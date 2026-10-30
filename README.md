@@ -37,3 +37,7 @@ The pretrained checkpoint's manifest reports ASAP in its supervised training cor
 **Decision:** the observation representation was a material bottleneck, and replacing it improved coherent `T_D`/cycle inference under oracle grids. The evidence does not establish blind-grid readiness. Improve and evaluate downbeat and ternary handling on oracle grids before relying on blind multi-grid or written time-signature predictions.
 
 This note summarizes the comparison only. It does not include audio, feature caches, model checkpoints, or the exploratory experiment directories.
+
+## Beat-conditioned subdivision HMM
+
+[`subdivision_hmm/`](subdivision_hmm/) is a standalone experiment: given ground-truth beats, infer each beat's notated subdivision ratio (1/2/3/4/6) from onset evidence with fixed beat-relative lattices, normalized onset likelihoods and an exact HMM persistence prior, on a work-disjoint ASAP split. With ideal (performance-MIDI) onsets it reaches 0.861 test balanced accuracy (0.944 on high-confidence labels); from audio-derived onsets the best is 0.615, so the acoustic evidence is the bottleneck. See [the report](subdivision_hmm/REPORT.md).
