@@ -1,0 +1,165 @@
+{
+ "spec": {
+  "name": "B1_nested_o0_n10_s0",
+  "work_ids": [
+   "Chopin::Etudes_op_10_8",
+   "Schubert::Moment_musical_no_3",
+   "Beethoven::Piano_Sonatas_26-2",
+   "Chopin::Etudes_op_25_11",
+   "Schubert::Piano_Sonatas_664-3",
+   "Bach::Fugue_bwv_860",
+   "Liszt::Concert_Etude_S145_2",
+   "Liszt::Gran_Etudes_de_Paganini_6_Theme_and_Variations",
+   "Bach::Fugue_bwv_846",
+   "Beethoven::Piano_Sonatas_17-2"
+  ],
+  "seed": 0,
+  "lam": 10.0,
+  "budget": "epochs",
+  "epochs": 10,
+  "patience": 3,
+  "steps": 1200,
+  "eval_every": 40,
+  "lr": 0.0008,
+  "batch_sequences": 4,
+  "weighting": {},
+  "init_from": null,
+  "tags": {
+   "protocol": "nested",
+   "n": 10,
+   "order": 0,
+   "order_seed": 500,
+   "budget": "B1",
+   "init_seed": 0
+  }
+ },
+ "objective": "original: acoustic NLL/observed + lambda * (-log p(C|O,B))/observed (diagnostics.objective)",
+ "optimizer_steps": 12,
+ "epochs_equivalent": 4.8,
+ "best_val_objective": {
+  "value": 253.43275451660156,
+  "step": 3
+ },
+ "best_val_bacc": {
+  "value": 0.6647085077073602,
+  "step": 3
+ },
+ "train_intervals": 2824,
+ "history": [
+  {
+   "step": 3,
+   "epoch": 1,
+   "val_objective": 253.43275451660156,
+   "val_acoustic_nll": 240.55105590820312,
+   "val_state_nll_per_label": 1.4568283557891846,
+   "val_raw_bacc": 0.6647085077073602,
+   "val_recall_1": 0.7351535836177474,
+   "val_recall_2": 0.4565156206023079,
+   "val_recall_3": 0.6600710299340437,
+   "val_recall_4": 0.6908499234303216,
+   "val_recall_6": 0.780952380952381,
+   "elapsed_s": 4.849661111831665,
+   "train_acoustic_nll": 173.8337409259915,
+   "train_state_nll_per_label": 0.4621391546307326
+  },
+  {
+   "step": 6,
+   "epoch": 2,
+   "val_objective": 253.81849670410156,
+   "val_acoustic_nll": 239.40194702148438,
+   "val_state_nll_per_label": 1.6304086446762085,
+   "val_raw_bacc": 0.6448817492977078,
+   "val_recall_1": 0.7406143344709898,
+   "val_recall_2": 0.43287362792006756,
+   "val_recall_3": 0.5768645357686454,
+   "val_recall_4": 0.6780245022970903,
+   "val_recall_6": 0.796031746031746,
+   "elapsed_s": 9.714374542236328,
+   "train_acoustic_nll": 172.94049608268415,
+   "train_state_nll_per_label": 0.45662526987790353
+  },
+  {
+   "step": 9,
+   "epoch": 3,
+   "val_objective": 255.4432373046875,
+   "val_acoustic_nll": 237.79953002929688,
+   "val_state_nll_per_label": 1.9953771829605103,
+   "val_raw_bacc": 0.61802353405039,
+   "val_recall_1": 0.752901023890785,
+   "val_recall_2": 0.3602589361103293,
+   "val_recall_3": 0.504312531709792,
+   "val_recall_4": 0.6623277182235835,
+   "val_recall_6": 0.8103174603174603,
+   "elapsed_s": 13.815020322799683,
+   "train_acoustic_nll": 172.19953412712465,
+   "train_state_nll_per_label": 0.46585230233770103
+  },
+  {
+   "step": 12,
+   "epoch": 4,
+   "val_objective": 258.1390075683594,
+   "val_acoustic_nll": 235.72799682617188,
+   "val_state_nll_per_label": 2.5345256328582764,
+   "val_raw_bacc": 0.5920741961697994,
+   "val_recall_1": 0.7795221843003413,
+   "val_recall_2": 0.27666760484097946,
+   "val_recall_3": 0.4515474378488077,
+   "val_recall_4": 0.6343797856049005,
+   "val_recall_6": 0.8182539682539682,
+   "elapsed_s": 17.238627910614014,
+   "train_acoustic_nll": 170.79852381373937,
+   "train_state_nll_per_label": 0.5104193809559261
+  }
+ ],
+ "sampling_schedule_permutations": [
+  [
+   2,
+   8,
+   4,
+   9,
+   1,
+   6,
+   7,
+   3,
+   0,
+   5
+  ],
+  [
+   3,
+   5,
+   1,
+   2,
+   9,
+   8,
+   0,
+   6,
+   7,
+   4
+  ],
+  [
+   2,
+   3,
+   8,
+   4,
+   5,
+   1,
+   0,
+   6,
+   9,
+   7
+  ],
+  [
+   6,
+   1,
+   9,
+   2,
+   7,
+   5,
+   8,
+   0,
+   3,
+   4
+  ]
+ ],
+ "wall_seconds": 17.24001383781433
+}

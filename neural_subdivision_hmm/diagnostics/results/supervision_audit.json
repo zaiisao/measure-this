@@ -1,0 +1,1018 @@
+{
+  "source": "frozen neural_subdivision_hmm.data.load_sequences() and train.choose_sequences()",
+  "split": "original training works only; no validation/test labels used",
+  "ratios": [
+    1,
+    2,
+    3,
+    4,
+    6
+  ],
+  "normalization": {
+    "log_duration_mean": -0.7166933417320251,
+    "log_duration_std": 0.6128014789352417,
+    "feature_dim": 48,
+    "ratios": [
+      1,
+      2,
+      3,
+      4,
+      6
+    ],
+    "train_sequences": 156,
+    "val_sequences": 44,
+    "test_sequences": 52
+  },
+  "all_train_sequences_before_mode_filter": {
+    "sequences": 156,
+    "intervals": 54996,
+    "observed_intervals": 42002,
+    "missing_intervals": 12994,
+    "fully_exact_sequences": 14,
+    "sequences_with_any_exact_label": 148,
+    "label_counts": {
+      "0": 1851,
+      "1": 6857,
+      "2": 11279,
+      "3": 6428,
+      "4": 14647,
+      "6": 6063,
+      "8": 3323,
+      "12": 2061,
+      "16": 567,
+      "24": 1920
+    }
+  },
+  "regimes": [
+    {
+      "name": "exact",
+      "constraint_mode": "exact",
+      "sequence_summary": {
+        "sequences": 5,
+        "intervals": 1293,
+        "observed_intervals": 1293,
+        "missing_intervals": 0,
+        "fully_exact_sequences": 5,
+        "sequences_with_any_exact_label": 5,
+        "label_counts": {
+          "1": 90,
+          "2": 174,
+          "3": 192,
+          "4": 756,
+          "6": 81
+        }
+      },
+      "work_count": 5,
+      "composer_count": 2,
+      "composers": [
+        "Bach",
+        "Schubert"
+      ],
+      "label_buckets": {
+        "exact_ratio": 1293,
+        "family_only_oov": 0,
+        "unknown_zero": 0,
+        "other_oov": 0
+      },
+      "exact_ratio_counts": {
+        "1": 90,
+        "2": 174,
+        "3": 192,
+        "4": 756,
+        "6": 81
+      },
+      "exact_confidence_by_ratio": {
+        "1": {
+          "n": 90,
+          "high_confidence": 84,
+          "low_confidence": 6
+        },
+        "2": {
+          "n": 174,
+          "high_confidence": 174,
+          "low_confidence": 0
+        },
+        "3": {
+          "n": 192,
+          "high_confidence": 192,
+          "low_confidence": 0
+        },
+        "4": {
+          "n": 756,
+          "high_confidence": 754,
+          "low_confidence": 2
+        },
+        "6": {
+          "n": 81,
+          "high_confidence": 75,
+          "low_confidence": 6
+        }
+      },
+      "label_confidence_by_value": {
+        "1": {
+          "n": 90,
+          "high_confidence": 84,
+          "low_confidence": 6
+        },
+        "2": {
+          "n": 174,
+          "high_confidence": 174,
+          "low_confidence": 0
+        },
+        "3": {
+          "n": 192,
+          "high_confidence": 192,
+          "low_confidence": 0
+        },
+        "4": {
+          "n": 756,
+          "high_confidence": 754,
+          "low_confidence": 2
+        },
+        "6": {
+          "n": 81,
+          "high_confidence": 75,
+          "low_confidence": 6
+        }
+      },
+      "exact_ratio_high_confidence_n": 1279,
+      "exact_ratio_low_confidence_n": 14,
+      "constraint_rows": 1293,
+      "constraint_fraction_of_intervals": 1.0,
+      "singleton_constraint_rows": 1293,
+      "family_constraint_rows_two_states": 0,
+      "unconstrained_rows": 0,
+      "observed_acoustic_rows": 1293,
+      "missing_acoustic_rows": 0,
+      "duration_seconds_all": {
+        "n": 1293,
+        "mean": 0.5403242987528017,
+        "sd": 0.19680448090282882,
+        "median": 0.4768109619617462,
+        "p10": 0.33919220566749575,
+        "p90": 0.9049479365348816
+      },
+      "duration_seconds_exact_labels": {
+        "n": 1293,
+        "mean": 0.5403242987528017,
+        "sd": 0.19680448090282882,
+        "median": 0.4768109619617462,
+        "p10": 0.33919220566749575,
+        "p90": 0.9049479365348816
+      },
+      "envelope_rms_all": {
+        "n": 1293,
+        "mean": 2.1179362507817916,
+        "sd": 1.440279080087225,
+        "median": 1.7781983613967896,
+        "p10": 0.7966129899024964,
+        "p90": 3.736466217041015
+      },
+      "envelope_mean_abs_all": {
+        "n": 1293,
+        "mean": 1.245047910491902,
+        "sd": 0.6785484855678307,
+        "median": 1.085448145866394,
+        "p10": 0.6196752071380616,
+        "p90": 2.05521011352539
+      },
+      "envelope_rms_exact_labels": {
+        "n": 1293,
+        "mean": 2.1179362507817916,
+        "sd": 1.440279080087225,
+        "median": 1.7781983613967896,
+        "p10": 0.7966129899024964,
+        "p90": 3.736466217041015
+      },
+      "envelope_mean_abs_exact_labels": {
+        "n": 1293,
+        "mean": 1.245047910491902,
+        "sd": 0.6785484855678307,
+        "median": 1.085448145866394,
+        "p10": 0.6196752071380616,
+        "p90": 2.05521011352539
+      },
+      "log_duration_z_all": {
+        "n": 1293,
+        "mean": 0.07902335760172648,
+        "sd": 0.5075274775126322,
+        "median": -0.03906934708356857,
+        "p10": -0.5948010921478272,
+        "p90": 1.0065503120422363
+      }
+    },
+    {
+      "name": "supervised_only",
+      "constraint_mode": "exact",
+      "sequence_summary": {
+        "sequences": 96,
+        "intervals": 41792,
+        "observed_intervals": 41792,
+        "missing_intervals": 0,
+        "fully_exact_sequences": 5,
+        "sequences_with_any_exact_label": 96,
+        "label_counts": {
+          "0": 1186,
+          "1": 5214,
+          "2": 8738,
+          "3": 5447,
+          "4": 10761,
+          "6": 5156,
+          "8": 2146,
+          "12": 1466,
+          "16": 400,
+          "24": 1278
+        }
+      },
+      "work_count": 96,
+      "composer_count": 11,
+      "composers": [
+        "Bach",
+        "Beethoven",
+        "Chopin",
+        "Debussy",
+        "Haydn",
+        "Liszt",
+        "Mozart",
+        "Rachmaninoff",
+        "Schubert",
+        "Schumann",
+        "Scriabin"
+      ],
+      "label_buckets": {
+        "exact_ratio": 35316,
+        "family_only_oov": 3612,
+        "unknown_zero": 1186,
+        "other_oov": 1678
+      },
+      "exact_ratio_counts": {
+        "1": 5214,
+        "2": 8738,
+        "3": 5447,
+        "4": 10761,
+        "6": 5156
+      },
+      "exact_confidence_by_ratio": {
+        "1": {
+          "n": 5214,
+          "high_confidence": 2239,
+          "low_confidence": 2975
+        },
+        "2": {
+          "n": 8738,
+          "high_confidence": 5542,
+          "low_confidence": 3196
+        },
+        "3": {
+          "n": 5447,
+          "high_confidence": 3082,
+          "low_confidence": 2365
+        },
+        "4": {
+          "n": 10761,
+          "high_confidence": 4839,
+          "low_confidence": 5922
+        },
+        "6": {
+          "n": 5156,
+          "high_confidence": 1448,
+          "low_confidence": 3708
+        }
+      },
+      "label_confidence_by_value": {
+        "0": {
+          "n": 1186,
+          "high_confidence": 0,
+          "low_confidence": 1186
+        },
+        "1": {
+          "n": 5214,
+          "high_confidence": 2239,
+          "low_confidence": 2975
+        },
+        "2": {
+          "n": 8738,
+          "high_confidence": 5542,
+          "low_confidence": 3196
+        },
+        "3": {
+          "n": 5447,
+          "high_confidence": 3082,
+          "low_confidence": 2365
+        },
+        "4": {
+          "n": 10761,
+          "high_confidence": 4839,
+          "low_confidence": 5922
+        },
+        "6": {
+          "n": 5156,
+          "high_confidence": 1448,
+          "low_confidence": 3708
+        },
+        "8": {
+          "n": 2146,
+          "high_confidence": 219,
+          "low_confidence": 1927
+        },
+        "12": {
+          "n": 1466,
+          "high_confidence": 24,
+          "low_confidence": 1442
+        },
+        "16": {
+          "n": 400,
+          "high_confidence": 0,
+          "low_confidence": 400
+        },
+        "24": {
+          "n": 1278,
+          "high_confidence": 36,
+          "low_confidence": 1242
+        }
+      },
+      "exact_ratio_high_confidence_n": 17150,
+      "exact_ratio_low_confidence_n": 18166,
+      "constraint_rows": 35316,
+      "constraint_fraction_of_intervals": 0.8450421133231241,
+      "singleton_constraint_rows": 35316,
+      "family_constraint_rows_two_states": 0,
+      "unconstrained_rows": 6476,
+      "observed_acoustic_rows": 41792,
+      "missing_acoustic_rows": 0,
+      "duration_seconds_all": {
+        "n": 41792,
+        "mean": 0.586507812379526,
+        "sd": 0.40546135116892346,
+        "median": 0.49414098262786865,
+        "p10": 0.2104170024394989,
+        "p90": 1.0403645038604736
+      },
+      "duration_seconds_exact_labels": {
+        "n": 35316,
+        "mean": 0.5294930005746391,
+        "sd": 0.33776421584898736,
+        "median": 0.45507797598838806,
+        "p10": 0.19999998807907104,
+        "p90": 0.9421877562999725
+      },
+      "envelope_rms_all": {
+        "n": 41792,
+        "mean": 2.1641247815730273,
+        "sd": 1.475738282125777,
+        "median": 1.7815563678741455,
+        "p10": 0.7431478381156922,
+        "p90": 4.079941415786744
+      },
+      "envelope_mean_abs_all": {
+        "n": 41792,
+        "mean": 1.2542360017103233,
+        "sd": 0.6736509922011065,
+        "median": 1.100558876991272,
+        "p10": 0.5699811220169068,
+        "p90": 2.1334287881851197
+      },
+      "envelope_rms_exact_labels": {
+        "n": 35316,
+        "mean": 2.139728248368087,
+        "sd": 1.4812898361366473,
+        "median": 1.7372738122940063,
+        "p10": 0.731939047574997,
+        "p90": 4.0808634757995605
+      },
+      "envelope_mean_abs_exact_labels": {
+        "n": 35316,
+        "mean": 1.2425881436075443,
+        "sd": 0.6750006713131399,
+        "median": 1.083546757698059,
+        "p10": 0.5634525120258331,
+        "p90": 2.1275373697280884
+      },
+      "log_duration_z_all": {
+        "n": 41792,
+        "mean": -0.008194668532123587,
+        "sd": 0.9954767710488353,
+        "median": 0.0191888939589262,
+        "p10": -1.373969554901123,
+        "p90": 1.2341099977493286
+      }
+    },
+    {
+      "name": "unsupervised",
+      "constraint_mode": "unlabeled",
+      "sequence_summary": {
+        "sequences": 98,
+        "intervals": 42002,
+        "observed_intervals": 42002,
+        "missing_intervals": 0,
+        "fully_exact_sequences": 5,
+        "sequences_with_any_exact_label": 96,
+        "label_counts": {
+          "0": 1186,
+          "1": 5214,
+          "2": 8738,
+          "3": 5447,
+          "4": 10761,
+          "6": 5156,
+          "8": 2321,
+          "12": 1466,
+          "16": 435,
+          "24": 1278
+        }
+      },
+      "work_count": 98,
+      "composer_count": 11,
+      "composers": [
+        "Bach",
+        "Beethoven",
+        "Chopin",
+        "Debussy",
+        "Haydn",
+        "Liszt",
+        "Mozart",
+        "Rachmaninoff",
+        "Schubert",
+        "Schumann",
+        "Scriabin"
+      ],
+      "label_buckets": {
+        "exact_ratio": 35316,
+        "family_only_oov": 3787,
+        "unknown_zero": 1186,
+        "other_oov": 1713
+      },
+      "exact_ratio_counts": {
+        "1": 5214,
+        "2": 8738,
+        "3": 5447,
+        "4": 10761,
+        "6": 5156
+      },
+      "exact_confidence_by_ratio": {
+        "1": {
+          "n": 5214,
+          "high_confidence": 2239,
+          "low_confidence": 2975
+        },
+        "2": {
+          "n": 8738,
+          "high_confidence": 5542,
+          "low_confidence": 3196
+        },
+        "3": {
+          "n": 5447,
+          "high_confidence": 3082,
+          "low_confidence": 2365
+        },
+        "4": {
+          "n": 10761,
+          "high_confidence": 4839,
+          "low_confidence": 5922
+        },
+        "6": {
+          "n": 5156,
+          "high_confidence": 1448,
+          "low_confidence": 3708
+        }
+      },
+      "label_confidence_by_value": {
+        "0": {
+          "n": 1186,
+          "high_confidence": 0,
+          "low_confidence": 1186
+        },
+        "1": {
+          "n": 5214,
+          "high_confidence": 2239,
+          "low_confidence": 2975
+        },
+        "2": {
+          "n": 8738,
+          "high_confidence": 5542,
+          "low_confidence": 3196
+        },
+        "3": {
+          "n": 5447,
+          "high_confidence": 3082,
+          "low_confidence": 2365
+        },
+        "4": {
+          "n": 10761,
+          "high_confidence": 4839,
+          "low_confidence": 5922
+        },
+        "6": {
+          "n": 5156,
+          "high_confidence": 1448,
+          "low_confidence": 3708
+        },
+        "8": {
+          "n": 2321,
+          "high_confidence": 286,
+          "low_confidence": 2035
+        },
+        "12": {
+          "n": 1466,
+          "high_confidence": 24,
+          "low_confidence": 1442
+        },
+        "16": {
+          "n": 435,
+          "high_confidence": 0,
+          "low_confidence": 435
+        },
+        "24": {
+          "n": 1278,
+          "high_confidence": 36,
+          "low_confidence": 1242
+        }
+      },
+      "exact_ratio_high_confidence_n": 17150,
+      "exact_ratio_low_confidence_n": 18166,
+      "constraint_rows": 0,
+      "constraint_fraction_of_intervals": 0.0,
+      "singleton_constraint_rows": 0,
+      "family_constraint_rows_two_states": 0,
+      "unconstrained_rows": 42002,
+      "observed_acoustic_rows": 42002,
+      "missing_acoustic_rows": 0,
+      "duration_seconds_all": {
+        "n": 42002,
+        "mean": 0.5903671599364821,
+        "sd": 0.40865480207872185,
+        "median": 0.4960934817790985,
+        "p10": 0.2104170024394989,
+        "p90": 1.0611958980560303
+      },
+      "duration_seconds_exact_labels": {
+        "n": 35316,
+        "mean": 0.5294930005746391,
+        "sd": 0.33776421584898736,
+        "median": 0.45507797598838806,
+        "p10": 0.19999998807907104,
+        "p90": 0.9421877562999725
+      },
+      "envelope_rms_all": {
+        "n": 42002,
+        "mean": 2.1757153796491413,
+        "sd": 1.4838797145895857,
+        "median": 1.78976571559906,
+        "p10": 0.744513761997223,
+        "p90": 4.121676254272461
+      },
+      "envelope_mean_abs_all": {
+        "n": 42002,
+        "mean": 1.2577683109488353,
+        "sd": 0.6744966222359806,
+        "median": 1.10370671749115,
+        "p10": 0.5707475185394287,
+        "p90": 2.1409555435180665
+      },
+      "envelope_rms_exact_labels": {
+        "n": 35316,
+        "mean": 2.139728248368087,
+        "sd": 1.4812898361366473,
+        "median": 1.7372738122940063,
+        "p10": 0.731939047574997,
+        "p90": 4.0808634757995605
+      },
+      "envelope_mean_abs_exact_labels": {
+        "n": 35316,
+        "mean": 1.2425881436075443,
+        "sd": 0.6750006713131399,
+        "median": 1.083546757698059,
+        "p10": 0.5634525120258331,
+        "p90": 2.1275373697280884
+      },
+      "log_duration_z_all": {
+        "n": 42002,
+        "mean": 1.0486809750188271e-07,
+        "sd": 0.9999983081594246,
+        "median": 0.02562405075877905,
+        "p10": -1.373969554901123,
+        "p90": 1.2664619088172913
+      }
+    },
+    {
+      "name": "mixed",
+      "constraint_mode": "exact",
+      "sequence_summary": {
+        "sequences": 98,
+        "intervals": 42002,
+        "observed_intervals": 42002,
+        "missing_intervals": 0,
+        "fully_exact_sequences": 5,
+        "sequences_with_any_exact_label": 96,
+        "label_counts": {
+          "0": 1186,
+          "1": 5214,
+          "2": 8738,
+          "3": 5447,
+          "4": 10761,
+          "6": 5156,
+          "8": 2321,
+          "12": 1466,
+          "16": 435,
+          "24": 1278
+        }
+      },
+      "work_count": 98,
+      "composer_count": 11,
+      "composers": [
+        "Bach",
+        "Beethoven",
+        "Chopin",
+        "Debussy",
+        "Haydn",
+        "Liszt",
+        "Mozart",
+        "Rachmaninoff",
+        "Schubert",
+        "Schumann",
+        "Scriabin"
+      ],
+      "label_buckets": {
+        "exact_ratio": 35316,
+        "family_only_oov": 3787,
+        "unknown_zero": 1186,
+        "other_oov": 1713
+      },
+      "exact_ratio_counts": {
+        "1": 5214,
+        "2": 8738,
+        "3": 5447,
+        "4": 10761,
+        "6": 5156
+      },
+      "exact_confidence_by_ratio": {
+        "1": {
+          "n": 5214,
+          "high_confidence": 2239,
+          "low_confidence": 2975
+        },
+        "2": {
+          "n": 8738,
+          "high_confidence": 5542,
+          "low_confidence": 3196
+        },
+        "3": {
+          "n": 5447,
+          "high_confidence": 3082,
+          "low_confidence": 2365
+        },
+        "4": {
+          "n": 10761,
+          "high_confidence": 4839,
+          "low_confidence": 5922
+        },
+        "6": {
+          "n": 5156,
+          "high_confidence": 1448,
+          "low_confidence": 3708
+        }
+      },
+      "label_confidence_by_value": {
+        "0": {
+          "n": 1186,
+          "high_confidence": 0,
+          "low_confidence": 1186
+        },
+        "1": {
+          "n": 5214,
+          "high_confidence": 2239,
+          "low_confidence": 2975
+        },
+        "2": {
+          "n": 8738,
+          "high_confidence": 5542,
+          "low_confidence": 3196
+        },
+        "3": {
+          "n": 5447,
+          "high_confidence": 3082,
+          "low_confidence": 2365
+        },
+        "4": {
+          "n": 10761,
+          "high_confidence": 4839,
+          "low_confidence": 5922
+        },
+        "6": {
+          "n": 5156,
+          "high_confidence": 1448,
+          "low_confidence": 3708
+        },
+        "8": {
+          "n": 2321,
+          "high_confidence": 286,
+          "low_confidence": 2035
+        },
+        "12": {
+          "n": 1466,
+          "high_confidence": 24,
+          "low_confidence": 1442
+        },
+        "16": {
+          "n": 435,
+          "high_confidence": 0,
+          "low_confidence": 435
+        },
+        "24": {
+          "n": 1278,
+          "high_confidence": 36,
+          "low_confidence": 1242
+        }
+      },
+      "exact_ratio_high_confidence_n": 17150,
+      "exact_ratio_low_confidence_n": 18166,
+      "constraint_rows": 35316,
+      "constraint_fraction_of_intervals": 0.840817103947431,
+      "singleton_constraint_rows": 35316,
+      "family_constraint_rows_two_states": 0,
+      "unconstrained_rows": 6686,
+      "observed_acoustic_rows": 42002,
+      "missing_acoustic_rows": 0,
+      "duration_seconds_all": {
+        "n": 42002,
+        "mean": 0.5903671599364821,
+        "sd": 0.4086548020787219,
+        "median": 0.4960934817790985,
+        "p10": 0.2104170024394989,
+        "p90": 1.0611958980560303
+      },
+      "duration_seconds_exact_labels": {
+        "n": 35316,
+        "mean": 0.5294930005746391,
+        "sd": 0.33776421584898736,
+        "median": 0.45507797598838806,
+        "p10": 0.19999998807907104,
+        "p90": 0.9421877562999725
+      },
+      "envelope_rms_all": {
+        "n": 42002,
+        "mean": 2.1757153796491413,
+        "sd": 1.4838797145895857,
+        "median": 1.78976571559906,
+        "p10": 0.744513761997223,
+        "p90": 4.121676254272461
+      },
+      "envelope_mean_abs_all": {
+        "n": 42002,
+        "mean": 1.2577683109488353,
+        "sd": 0.6744966222359806,
+        "median": 1.10370671749115,
+        "p10": 0.5707475185394287,
+        "p90": 2.1409555435180665
+      },
+      "envelope_rms_exact_labels": {
+        "n": 35316,
+        "mean": 2.139728248368087,
+        "sd": 1.4812898361366473,
+        "median": 1.7372738122940063,
+        "p10": 0.731939047574997,
+        "p90": 4.0808634757995605
+      },
+      "envelope_mean_abs_exact_labels": {
+        "n": 35316,
+        "mean": 1.2425881436075443,
+        "sd": 0.6750006713131399,
+        "median": 1.083546757698059,
+        "p10": 0.5634525120258331,
+        "p90": 2.1275373697280884
+      },
+      "log_duration_z_all": {
+        "n": 42002,
+        "mean": 1.0486809750188271e-07,
+        "sd": 0.9999983081594246,
+        "median": 0.02562405075877905,
+        "p10": -1.373969554901123,
+        "p90": 1.2664619088172913
+      }
+    },
+    {
+      "name": "partial_family",
+      "constraint_mode": "family",
+      "sequence_summary": {
+        "sequences": 98,
+        "intervals": 42002,
+        "observed_intervals": 42002,
+        "missing_intervals": 0,
+        "fully_exact_sequences": 5,
+        "sequences_with_any_exact_label": 96,
+        "label_counts": {
+          "0": 1186,
+          "1": 5214,
+          "2": 8738,
+          "3": 5447,
+          "4": 10761,
+          "6": 5156,
+          "8": 2321,
+          "12": 1466,
+          "16": 435,
+          "24": 1278
+        }
+      },
+      "work_count": 98,
+      "composer_count": 11,
+      "composers": [
+        "Bach",
+        "Beethoven",
+        "Chopin",
+        "Debussy",
+        "Haydn",
+        "Liszt",
+        "Mozart",
+        "Rachmaninoff",
+        "Schubert",
+        "Schumann",
+        "Scriabin"
+      ],
+      "label_buckets": {
+        "exact_ratio": 35316,
+        "family_only_oov": 3787,
+        "unknown_zero": 1186,
+        "other_oov": 1713
+      },
+      "exact_ratio_counts": {
+        "1": 5214,
+        "2": 8738,
+        "3": 5447,
+        "4": 10761,
+        "6": 5156
+      },
+      "exact_confidence_by_ratio": {
+        "1": {
+          "n": 5214,
+          "high_confidence": 2239,
+          "low_confidence": 2975
+        },
+        "2": {
+          "n": 8738,
+          "high_confidence": 5542,
+          "low_confidence": 3196
+        },
+        "3": {
+          "n": 5447,
+          "high_confidence": 3082,
+          "low_confidence": 2365
+        },
+        "4": {
+          "n": 10761,
+          "high_confidence": 4839,
+          "low_confidence": 5922
+        },
+        "6": {
+          "n": 5156,
+          "high_confidence": 1448,
+          "low_confidence": 3708
+        }
+      },
+      "label_confidence_by_value": {
+        "0": {
+          "n": 1186,
+          "high_confidence": 0,
+          "low_confidence": 1186
+        },
+        "1": {
+          "n": 5214,
+          "high_confidence": 2239,
+          "low_confidence": 2975
+        },
+        "2": {
+          "n": 8738,
+          "high_confidence": 5542,
+          "low_confidence": 3196
+        },
+        "3": {
+          "n": 5447,
+          "high_confidence": 3082,
+          "low_confidence": 2365
+        },
+        "4": {
+          "n": 10761,
+          "high_confidence": 4839,
+          "low_confidence": 5922
+        },
+        "6": {
+          "n": 5156,
+          "high_confidence": 1448,
+          "low_confidence": 3708
+        },
+        "8": {
+          "n": 2321,
+          "high_confidence": 286,
+          "low_confidence": 2035
+        },
+        "12": {
+          "n": 1466,
+          "high_confidence": 24,
+          "low_confidence": 1442
+        },
+        "16": {
+          "n": 435,
+          "high_confidence": 0,
+          "low_confidence": 435
+        },
+        "24": {
+          "n": 1278,
+          "high_confidence": 36,
+          "low_confidence": 1242
+        }
+      },
+      "exact_ratio_high_confidence_n": 17150,
+      "exact_ratio_low_confidence_n": 18166,
+      "constraint_rows": 39103,
+      "constraint_fraction_of_intervals": 0.9309794771677539,
+      "singleton_constraint_rows": 5214,
+      "family_constraint_rows_two_states": 33889,
+      "unconstrained_rows": 2899,
+      "observed_acoustic_rows": 42002,
+      "missing_acoustic_rows": 0,
+      "duration_seconds_all": {
+        "n": 42002,
+        "mean": 0.5903671599364821,
+        "sd": 0.40865480207872185,
+        "median": 0.4960934817790985,
+        "p10": 0.2104170024394989,
+        "p90": 1.0611958980560303
+      },
+      "duration_seconds_exact_labels": {
+        "n": 35316,
+        "mean": 0.5294930005746391,
+        "sd": 0.33776421584898736,
+        "median": 0.45507797598838806,
+        "p10": 0.19999998807907104,
+        "p90": 0.9421877562999725
+      },
+      "envelope_rms_all": {
+        "n": 42002,
+        "mean": 2.1757153796491413,
+        "sd": 1.4838797145895857,
+        "median": 1.78976571559906,
+        "p10": 0.744513761997223,
+        "p90": 4.121676254272461
+      },
+      "envelope_mean_abs_all": {
+        "n": 42002,
+        "mean": 1.2577683109488353,
+        "sd": 0.6744966222359806,
+        "median": 1.10370671749115,
+        "p10": 0.5707475185394287,
+        "p90": 2.1409555435180665
+      },
+      "envelope_rms_exact_labels": {
+        "n": 35316,
+        "mean": 2.139728248368087,
+        "sd": 1.4812898361366473,
+        "median": 1.7372738122940063,
+        "p10": 0.731939047574997,
+        "p90": 4.0808634757995605
+      },
+      "envelope_mean_abs_exact_labels": {
+        "n": 35316,
+        "mean": 1.2425881436075443,
+        "sd": 0.6750006713131399,
+        "median": 1.083546757698059,
+        "p10": 0.5634525120258331,
+        "p90": 2.1275373697280884
+      },
+      "log_duration_z_all": {
+        "n": 42002,
+        "mean": 1.0486809750188271e-07,
+        "sd": 0.9999983081594246,
+        "median": 0.02562405075877905,
+        "p10": -1.373969554901123,
+        "p90": 1.2664619088172913
+      }
+    }
+  ],
+  "strict_vs_broad_comparison": {
+    "strict_exact_works": [
+      "Bach::Fugue_bwv_854",
+      "Bach::Prelude_bwv_846",
+      "Bach::Prelude_bwv_860",
+      "Bach::Prelude_bwv_865",
+      "Schubert::Impromptu_op.90_D.899_4"
+    ],
+    "strict_exact_composers": [
+      "Bach",
+      "Schubert"
+    ],
+    "broad_supervised_works": 96,
+    "broad_supervised_composers": [
+      "Bach",
+      "Beethoven",
+      "Chopin",
+      "Debussy",
+      "Haydn",
+      "Liszt",
+      "Mozart",
+      "Rachmaninoff",
+      "Schubert",
+      "Schumann",
+      "Scriabin"
+    ],
+    "mixed_added_sequences": 2,
+    "mixed_added_intervals": 210
+  }
+}

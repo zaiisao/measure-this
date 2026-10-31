@@ -1,0 +1,33 @@
+{
+  "seed": 0,
+  "optimizer": "AdamW",
+  "learning_rate": 0.0008,
+  "weight_decay": 0.00001,
+  "gradient_clip_norm": 2.0,
+  "epochs_max": 10,
+  "early_stopping_patience": 3,
+  "batch_sequences": 4,
+  "train_split": "original work-disjoint ASAP/MAESTRO split",
+  "state_ratios": [1, 2, 3, 4, 6],
+  "experiments": [
+    {"name":"supervised_exact","mode":"exact","hidden":48,"rank":2,"p_stay":0.99},
+    {"name":"supervised_only","mode":"supervised_only","hidden":48,"rank":2,"p_stay":0.99},
+    {"name":"unsupervised","mode":"unsupervised","hidden":48,"rank":2,"p_stay":0.99},
+    {"name":"mixed","mode":"mixed","hidden":48,"rank":2,"p_stay":0.99},
+    {"name":"partial_family","mode":"partial_family","hidden":48,"rank":2,"p_stay":0.99},
+    {"name":"supervised_diag","mode":"supervised_only","hidden":48,"rank":0,"p_stay":0.99},
+    {"name":"capacity16","mode":"supervised_only","hidden":16,"rank":2,"p_stay":0.99},
+    {"name":"transition095","mode":"supervised_only","hidden":48,"rank":2,"p_stay":0.95}
+  ],
+  "decoder_validation_grid": {
+    "p_stay": [0.95, 0.99, 0.999],
+    "emission_temperature": [0.25, 0.5, 1.0],
+    "selection_metric": "five-class balanced accuracy on validation"
+  },
+  "evaluation_test_coverage": {
+    "works": 18,
+    "performances": 52,
+    "all_intervals": 32173,
+    "in_vocabulary_labeled_intervals": 29339
+  }
+}

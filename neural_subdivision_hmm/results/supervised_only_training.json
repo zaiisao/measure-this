@@ -1,0 +1,122 @@
+{
+  "name": "supervised_only",
+  "mode": "supervised_only",
+  "constraint_mode": "exact",
+  "val_constraint_mode": "exact",
+  "rank": 2,
+  "hidden": 48,
+  "p_stay": 0.99,
+  "seed": 0,
+  "epochs_run": 10,
+  "best_epoch": 10,
+  "best_val_nll": 101.42923783379712,
+  "normalization": {
+    "log_duration_mean": -0.7166933417320251,
+    "log_duration_std": 0.6128014789352417,
+    "feature_dim": 48,
+    "ratios": [
+      1,
+      2,
+      3,
+      4,
+      6
+    ],
+    "train_sequences": 156,
+    "val_sequences": 44,
+    "test_sequences": 52
+  },
+  "train_counts": {
+    "sequences": 96,
+    "intervals": 41792,
+    "observed_intervals": 41792,
+    "missing_intervals": 0,
+    "fully_exact_sequences": 5,
+    "sequences_with_any_exact_label": 96,
+    "label_counts": {
+      "0": 1186,
+      "1": 5214,
+      "2": 8738,
+      "3": 5447,
+      "4": 10761,
+      "6": 5156,
+      "8": 2146,
+      "12": 1466,
+      "16": 400,
+      "24": 1278
+    }
+  },
+  "validation_counts": {
+    "sequences": 96,
+    "intervals": 41792,
+    "observed_intervals": 41792,
+    "missing_intervals": 0,
+    "fully_exact_sequences": 5,
+    "sequences_with_any_exact_label": 96,
+    "label_counts": {
+      "0": 1186,
+      "1": 5214,
+      "2": 8738,
+      "3": 5447,
+      "4": 10761,
+      "6": 5156,
+      "8": 2146,
+      "12": 1466,
+      "16": 400,
+      "24": 1278
+    }
+  },
+  "train_labeled_interval_count": 35316,
+  "history": [
+    {
+      "epoch": 1,
+      "train_nll_per_observed_interval": 221.7238394419352,
+      "val_nll_per_observed_interval": 185.69343206619595
+    },
+    {
+      "epoch": 2,
+      "train_nll_per_observed_interval": 190.5772384007772,
+      "val_nll_per_observed_interval": 145.55984245215586
+    },
+    {
+      "epoch": 3,
+      "train_nll_per_observed_interval": 131.9838892618815,
+      "val_nll_per_observed_interval": 118.82614047220619
+    },
+    {
+      "epoch": 4,
+      "train_nll_per_observed_interval": 113.73905499776204,
+      "val_nll_per_observed_interval": 108.8235385887108
+    },
+    {
+      "epoch": 5,
+      "train_nll_per_observed_interval": 108.4896764755249,
+      "val_nll_per_observed_interval": 105.1782559749726
+    },
+    {
+      "epoch": 6,
+      "train_nll_per_observed_interval": 107.86013412475586,
+      "val_nll_per_observed_interval": 103.71343470240443
+    },
+    {
+      "epoch": 7,
+      "train_nll_per_observed_interval": 106.08792177836101,
+      "val_nll_per_observed_interval": 103.09361576924462
+    },
+    {
+      "epoch": 8,
+      "train_nll_per_observed_interval": 105.75101025899251,
+      "val_nll_per_observed_interval": 102.60719993085263
+    },
+    {
+      "epoch": 9,
+      "train_nll_per_observed_interval": 103.71941884358723,
+      "val_nll_per_observed_interval": 101.89802649338797
+    },
+    {
+      "epoch": 10,
+      "train_nll_per_observed_interval": 104.38763745625813,
+      "val_nll_per_observed_interval": 101.42923783379712
+    }
+  ],
+  "checkpoint": "/home/sogang/jaehoon/explore_this/neural_subdivision_hmm/results/checkpoints/supervised_only.pt"
+}

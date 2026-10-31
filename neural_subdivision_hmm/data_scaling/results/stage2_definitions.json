@@ -1,0 +1,30 @@
+{
+ "excluded_misaligned": [
+  "Bach::Prelude_bwv_856",
+  "Bach::Prelude_bwv_857",
+  "Bach::Prelude_bwv_873",
+  "Beethoven::Piano_Sonatas_21-3",
+  "Beethoven::Piano_Sonatas_23-1",
+  "Beethoven::Piano_Sonatas_26-2",
+  "Beethoven::Piano_Sonatas_3-2",
+  "Beethoven::Piano_Sonatas_31-1",
+  "Chopin::Ballades_4",
+  "Chopin::Berceuse_op_57",
+  "Debussy::Images_Book_1_1_Reflets_dans_lEau",
+  "Liszt::Ballade_2",
+  "Liszt::Gran_Etudes_de_Paganini_2_La_campanella",
+  "Rachmaninoff::Preludes_op_23_4",
+  "Schubert::Impromptu_op.90_D.899_3",
+  "Schubert::Piano_Sonatas_894-2",
+  "Schumann::Kreisleriana_1",
+  "Scriabin::Etudes_op_8_11",
+  "Scriabin::Sonatas_5"
+ ],
+ "class_weights": {
+  "1": 1.3546605293440737,
+  "2": 0.8083314259555963,
+  "3": 1.2967137874059116,
+  "4": 0.6563702258154447,
+  "6": 1.369899146625291
+ }
+}

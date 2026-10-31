@@ -1,0 +1,16 @@
+{
+  "supervised_exact_val_selected": {
+    "n": 29339,
+    "accuracy": 0.6725178090596134,
+    "balanced_accuracy": 0.6641763080142364,
+    "ece": 0.29631798055937547,
+    "brier": 0.6157068469290815
+  },
+  "classical_uniform_init_p_0_99_temperature_0_5": {
+    "n": 29339,
+    "accuracy": 0.6901394048876921,
+    "balanced_accuracy": 0.6167587191837741,
+    "ece": 0.2628333974392072,
+    "brier": 0.5669959496317751
+  }
+}

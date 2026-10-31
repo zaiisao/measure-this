@@ -1,0 +1,153 @@
+{
+  "name": "structured_broad_l10_s2",
+  "mode": "supervised_only",
+  "lambda_state": 10.0,
+  "seed": 2,
+  "best_epoch": 10,
+  "best_val_objective": 120.26407623291016,
+  "train_counts": {
+    "sequences": 96,
+    "intervals": 41792,
+    "observed_intervals": 41792,
+    "missing_intervals": 0,
+    "fully_exact_sequences": 5,
+    "sequences_with_any_exact_label": 96,
+    "label_counts": {
+      "0": 1186,
+      "1": 5214,
+      "2": 8738,
+      "3": 5447,
+      "4": 10761,
+      "6": 5156,
+      "8": 2146,
+      "12": 1466,
+      "16": 400,
+      "24": 1278
+    }
+  },
+  "validation_counts": {
+    "sequences": 31,
+    "intervals": 15237,
+    "observed_intervals": 15237,
+    "missing_intervals": 0,
+    "fully_exact_sequences": 4,
+    "sequences_with_any_exact_label": 31,
+    "label_counts": {
+      "0": 457,
+      "1": 1465,
+      "2": 3553,
+      "3": 1971,
+      "4": 5224,
+      "6": 1260,
+      "8": 364,
+      "12": 655,
+      "16": 41,
+      "24": 247
+    }
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_acoustic_nll_per_interval": 134.63580124118974,
+      "train_state_nll_per_constraint": 7.533120113316202,
+      "train_joint_nll_per_interval": 141.00160380234945,
+      "val_acoustic_nll_per_interval": 147.050537109375,
+      "val_state_nll_per_constraint": 7.371767044067383,
+      "val_joint_nll_per_interval": 153.56886291503906,
+      "val_weighted_objective": 212.23385620117188
+    },
+    {
+      "epoch": 2,
+      "train_acoustic_nll_per_interval": 128.1908865124672,
+      "train_state_nll_per_constraint": 6.8048899412182156,
+      "train_joint_nll_per_interval": 133.94130815974057,
+      "val_acoustic_nll_per_interval": 137.35049438476562,
+      "val_state_nll_per_constraint": 7.048421382904053,
+      "val_joint_nll_per_interval": 143.58290100097656,
+      "val_weighted_objective": 199.67469787597656
+    },
+    {
+      "epoch": 3,
+      "train_acoustic_nll_per_interval": 120.48567539900769,
+      "train_state_nll_per_constraint": 6.394846788415662,
+      "train_joint_nll_per_interval": 125.88959276822223,
+      "val_acoustic_nll_per_interval": 127.82749938964844,
+      "val_state_nll_per_constraint": 6.595794200897217,
+      "val_joint_nll_per_interval": 133.65969848632812,
+      "val_weighted_objective": 186.14944458007812
+    },
+    {
+      "epoch": 4,
+      "train_acoustic_nll_per_interval": 112.23404338330624,
+      "train_state_nll_per_constraint": 6.077202995145614,
+      "train_joint_nll_per_interval": 117.36953563292212,
+      "val_acoustic_nll_per_interval": 119.39286041259766,
+      "val_state_nll_per_constraint": 6.064670085906982,
+      "val_joint_nll_per_interval": 124.75541687011719,
+      "val_weighted_objective": 173.01844787597656
+    },
+    {
+      "epoch": 5,
+      "train_acoustic_nll_per_interval": 108.02301574392304,
+      "train_state_nll_per_constraint": 5.365862410097407,
+      "train_joint_nll_per_interval": 112.55739537771409,
+      "val_acoustic_nll_per_interval": 115.31226348876953,
+      "val_state_nll_per_constraint": 4.947538375854492,
+      "val_joint_nll_per_interval": 119.68702697753906,
+      "val_weighted_objective": 159.05984497070312
+    },
+    {
+      "epoch": 6,
+      "train_acoustic_nll_per_interval": 106.19285398383965,
+      "train_state_nll_per_constraint": 4.454097387028896,
+      "train_joint_nll_per_interval": 109.95675344598604,
+      "val_acoustic_nll_per_interval": 113.99541473388672,
+      "val_state_nll_per_constraint": 3.7352819442749023,
+      "val_joint_nll_per_interval": 117.29825592041016,
+      "val_weighted_objective": 147.02386474609375
+    },
+    {
+      "epoch": 7,
+      "train_acoustic_nll_per_interval": 105.5607099052958,
+      "train_state_nll_per_constraint": 3.2745339621205685,
+      "train_joint_nll_per_interval": 108.32782950682443,
+      "val_acoustic_nll_per_interval": 113.4725570678711,
+      "val_state_nll_per_constraint": 2.5900566577911377,
+      "val_joint_nll_per_interval": 115.76276397705078,
+      "val_weighted_objective": 136.3745880126953
+    },
+    {
+      "epoch": 8,
+      "train_acoustic_nll_per_interval": 105.25947748501122,
+      "train_state_nll_per_constraint": 2.4041495444699286,
+      "train_joint_nll_per_interval": 107.29108421908404,
+      "val_acoustic_nll_per_interval": 112.69550323486328,
+      "val_state_nll_per_constraint": 1.9635770320892334,
+      "val_joint_nll_per_interval": 114.4317626953125,
+      "val_weighted_objective": 130.0580291748047
+    },
+    {
+      "epoch": 9,
+      "train_acoustic_nll_per_interval": 104.92949769288803,
+      "train_state_nll_per_constraint": 1.7147758778554691,
+      "train_joint_nll_per_interval": 106.37855560308576,
+      "val_acoustic_nll_per_interval": 111.74806213378906,
+      "val_state_nll_per_constraint": 1.4246052503585815,
+      "val_joint_nll_per_interval": 113.00773620605469,
+      "val_weighted_objective": 124.34483337402344
+    },
+    {
+      "epoch": 10,
+      "train_acoustic_nll_per_interval": 105.0765429340862,
+      "train_state_nll_per_constraint": 1.2044320330639795,
+      "train_joint_nll_per_interval": 106.09434033480757,
+      "val_acoustic_nll_per_interval": 111.77508544921875,
+      "val_state_nll_per_constraint": 0.9600439071655273,
+      "val_joint_nll_per_interval": 112.62397766113281,
+      "val_weighted_objective": 120.26407623291016
+    }
+  ],
+  "initial_emission_matches_classical": true,
+  "scale_floor": 0.05,
+  "checkpoint": "/home/sogang/jaehoon/explore_this/neural_subdivision_hmm/diagnostics/results/structured_broad_l10_s2.pt"
+}

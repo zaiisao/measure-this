@@ -1,0 +1,204 @@
+{
+  "per_run": [
+    {
+      "name": "broad_l10_s0",
+      "raw_bacc": 0.6466857815231694,
+      "cal_bacc": 0.6492535394628672,
+      "accuracy": 0.7309724257813831,
+      "ece": 0.19189137964958247,
+      "brier": 0.4476587369747908,
+      "nll": 120.19919668302032,
+      "family_auc": 0.9621061614977744,
+      "paired_delta": 0.03249482027909312,
+      "paired_ci_lo": -0.06717357767363136,
+      "paired_ci_hi": 0.08550057818213684
+    },
+    {
+      "name": "broad_l10_s1",
+      "raw_bacc": 0.6422090003485956,
+      "cal_bacc": 0.6483502251804867,
+      "accuracy": 0.715395889430451,
+      "ece": 0.20940721132926016,
+      "brier": 0.4778031329225411,
+      "nll": 119.5263036424904,
+      "family_auc": 0.9530464104685378,
+      "paired_delta": 0.031591505996712566,
+      "paired_ci_lo": -0.13166440379960587,
+      "paired_ci_hi": 0.1452128604640438
+    },
+    {
+      "name": "broad_l10_s2",
+      "raw_bacc": 0.6520423537825522,
+      "cal_bacc": 0.6520423537825522,
+      "accuracy": 0.7283138484610927,
+      "ece": 0.21802436239376713,
+      "brier": 0.4787808337568974,
+      "nll": 117.66979517957604,
+      "family_auc": 0.9390710709748464,
+      "paired_delta": 0.035283634598778035,
+      "paired_ci_lo": -0.12268428324675106,
+      "paired_ci_hi": 0.09157488533120697
+    },
+    {
+      "name": "incremental_n30_l10_s0",
+      "raw_bacc": 0.7485130079629693,
+      "cal_bacc": 0.7615065018874233,
+      "accuracy": 0.8012883874706023,
+      "ece": 0.17119725701036032,
+      "brier": 0.3631484140428162,
+      "nll": 178.13385110501235,
+      "family_auc": 0.9626161020621719,
+      "paired_delta": 0.14474778270364919,
+      "paired_ci_lo": -0.15279153420351,
+      "paired_ci_hi": 0.218675090643625
+    },
+    {
+      "name": "incremental_n30_l10_s1",
+      "raw_bacc": 0.7371274528201687,
+      "cal_bacc": 0.7371274528201687,
+      "accuracy": 0.78571185111967,
+      "ece": 0.1724643743386797,
+      "brier": 0.3786058870087065,
+      "nll": 183.42293087614226,
+      "family_auc": 0.9654419813460927,
+      "paired_delta": 0.12036873363639455,
+      "paired_ci_lo": -0.1850007967155529,
+      "paired_ci_hi": 0.18920099591606312
+    },
+    {
+      "name": "incremental_n30_l10_s2",
+      "raw_bacc": 0.7118173201394807,
+      "cal_bacc": 0.7118173201394807,
+      "accuracy": 0.7801561062067555,
+      "ece": 0.17574560370416475,
+      "brier": 0.3815786588543941,
+      "nll": 175.83272091141058,
+      "family_auc": 0.9748478170832172,
+      "paired_delta": 0.09505860095570662,
+      "paired_ci_lo": -0.1970655960079112,
+      "paired_ci_hi": 0.17171822837978168
+    },
+    {
+      "name": "structured_broad_l10_s0",
+      "raw_bacc": 0.6889702562428532,
+      "cal_bacc": 0.6562731097134942,
+      "accuracy": 0.760693956849245,
+      "ece": 0.18360337860225318,
+      "brier": 0.40909949528247785,
+      "nll": 106.67500453480986,
+      "family_auc": 0.9921471530123076,
+      "paired_delta": 0.039514390529720056,
+      "paired_ci_lo": -0.031724268840855066,
+      "paired_ci_hi": 0.16211659412394966
+    },
+    {
+      "name": "structured_broad_l10_s1",
+      "raw_bacc": 0.6227816305952345,
+      "cal_bacc": 0.6042597404188459,
+      "accuracy": 0.716997852687549,
+      "ece": 0.24342009843263274,
+      "brier": 0.5023670401378229,
+      "nll": 106.82378147777251,
+      "family_auc": 0.9744960514671238,
+      "paired_delta": -0.012498978764928226,
+      "paired_ci_lo": -0.08984605605832595,
+      "paired_ci_hi": 0.09748577354387718
+    },
+    {
+      "name": "structured_broad_l10_s2",
+      "raw_bacc": 0.6038941007973706,
+      "cal_bacc": 0.5933380725447005,
+      "accuracy": 0.7263369576331845,
+      "ece": 0.24201718464398783,
+      "brier": 0.5014477314744987,
+      "nll": 106.96748243869082,
+      "family_auc": 0.974002564819199,
+      "paired_delta": -0.023420646639073617,
+      "paired_ci_lo": -0.11339357859006628,
+      "paired_ci_hi": 0.07993308570832126
+    }
+  ],
+  "paired_bootstrap": {
+    "broad_l10_s0": {
+      "n_work_bootstraps": 5000,
+      "delta_bacc_nhmm_minus_classical": 0.03249482027909312,
+      "paired_delta_ci95": [
+        -0.06717357767363136,
+        0.08550057818213684
+      ],
+      "bootstrap_fraction_delta_le_zero": 0.179
+    },
+    "broad_l10_s1": {
+      "n_work_bootstraps": 5000,
+      "delta_bacc_nhmm_minus_classical": 0.031591505996712566,
+      "paired_delta_ci95": [
+        -0.13166440379960587,
+        0.1452128604640438
+      ],
+      "bootstrap_fraction_delta_le_zero": 0.3804
+    },
+    "broad_l10_s2": {
+      "n_work_bootstraps": 5000,
+      "delta_bacc_nhmm_minus_classical": 0.035283634598778035,
+      "paired_delta_ci95": [
+        -0.12268428324675106,
+        0.09157488533120697
+      ],
+      "bootstrap_fraction_delta_le_zero": 0.191
+    },
+    "incremental_n30_l10_s0": {
+      "n_work_bootstraps": 5000,
+      "delta_bacc_nhmm_minus_classical": 0.14474778270364919,
+      "paired_delta_ci95": [
+        -0.15279153420351,
+        0.218675090643625
+      ],
+      "bootstrap_fraction_delta_le_zero": 0.1264
+    },
+    "incremental_n30_l10_s1": {
+      "n_work_bootstraps": 5000,
+      "delta_bacc_nhmm_minus_classical": 0.12036873363639455,
+      "paired_delta_ci95": [
+        -0.1850007967155529,
+        0.18920099591606312
+      ],
+      "bootstrap_fraction_delta_le_zero": 0.1262
+    },
+    "incremental_n30_l10_s2": {
+      "n_work_bootstraps": 5000,
+      "delta_bacc_nhmm_minus_classical": 0.09505860095570662,
+      "paired_delta_ci95": [
+        -0.1970655960079112,
+        0.17171822837978168
+      ],
+      "bootstrap_fraction_delta_le_zero": 0.1262
+    },
+    "structured_broad_l10_s0": {
+      "n_work_bootstraps": 5000,
+      "delta_bacc_nhmm_minus_classical": 0.039514390529720056,
+      "paired_delta_ci95": [
+        -0.031724268840855066,
+        0.16211659412394966
+      ],
+      "bootstrap_fraction_delta_le_zero": 0.2724
+    },
+    "structured_broad_l10_s1": {
+      "n_work_bootstraps": 5000,
+      "delta_bacc_nhmm_minus_classical": -0.012498978764928226,
+      "paired_delta_ci95": [
+        -0.08984605605832595,
+        0.09748577354387718
+      ],
+      "bootstrap_fraction_delta_le_zero": 0.5652
+    },
+    "structured_broad_l10_s2": {
+      "n_work_bootstraps": 5000,
+      "delta_bacc_nhmm_minus_classical": -0.023420646639073617,
+      "paired_delta_ci95": [
+        -0.11339357859006628,
+        0.07993308570832126
+      ],
+      "bootstrap_fraction_delta_le_zero": 0.675
+    }
+  }
+}

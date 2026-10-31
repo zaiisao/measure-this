@@ -1,0 +1,47 @@
+{
+  "supervised_exact": {
+    "sequences": 5,
+    "observed_intervals": 1293,
+    "informative_intervals": 1293,
+    "acoustic_nll_per_observed": 177.8408437258314,
+    "joint_nll_per_observed": 178.30958768368137,
+    "state_nll_per_observed": 0.46874395784996636,
+    "state_nll_per_informative": 0.46874395784996636,
+    "acoustic_gradient_l2_per_observed": 115.19424438476562,
+    "state_gradient_l2_per_observed": 5.809146404266357,
+    "gradient_cosine": -0.6538916230201721
+  },
+  "supervised_only": {
+    "sequences": 96,
+    "observed_intervals": 41792,
+    "informative_intervals": 35316,
+    "acoustic_nll_per_observed": 94.66243109476694,
+    "joint_nll_per_observed": 101.42923791485212,
+    "state_nll_per_observed": 6.766806820085179,
+    "state_nll_per_informative": 8.007656320789438,
+    "acoustic_gradient_l2_per_observed": 225.46812438964844,
+    "state_gradient_l2_per_observed": 212.1483612060547,
+    "gradient_cosine": -0.4198435842990875
+  },
+  "mixed": {
+    "sequences": 98,
+    "observed_intervals": 42002,
+    "informative_intervals": 35316,
+    "acoustic_nll_per_observed": 94.4542747313372,
+    "joint_nll_per_observed": 101.73258560418253,
+    "state_nll_per_observed": 7.2783108728453385,
+    "state_nll_per_informative": 8.656235510285702,
+    "acoustic_gradient_l2_per_observed": 220.51707458496094,
+    "state_gradient_l2_per_observed": 233.83750915527344,
+    "gradient_cosine": -0.245714008808136
+  },
+  "unsupervised": {
+    "sequences": 98,
+    "observed_intervals": 42002,
+    "informative_intervals": 0,
+    "acoustic_nll_per_observed": 86.23285340207013,
+    "joint_nll_per_observed": 86.23285340207013,
+    "state_nll_per_observed": 0.0,
+    "state_nll_per_informative": 0.0
+  }
+}

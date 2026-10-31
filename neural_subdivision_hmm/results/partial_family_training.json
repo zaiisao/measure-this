@@ -1,0 +1,122 @@
+{
+  "name": "partial_family",
+  "mode": "partial_family",
+  "constraint_mode": "family",
+  "val_constraint_mode": "family",
+  "rank": 2,
+  "hidden": 48,
+  "p_stay": 0.99,
+  "seed": 0,
+  "epochs_run": 10,
+  "best_epoch": 10,
+  "best_val_nll": 95.74688665229169,
+  "normalization": {
+    "log_duration_mean": -0.7166933417320251,
+    "log_duration_std": 0.6128014789352417,
+    "feature_dim": 48,
+    "ratios": [
+      1,
+      2,
+      3,
+      4,
+      6
+    ],
+    "train_sequences": 156,
+    "val_sequences": 44,
+    "test_sequences": 52
+  },
+  "train_counts": {
+    "sequences": 98,
+    "intervals": 42002,
+    "observed_intervals": 42002,
+    "missing_intervals": 0,
+    "fully_exact_sequences": 5,
+    "sequences_with_any_exact_label": 96,
+    "label_counts": {
+      "0": 1186,
+      "1": 5214,
+      "2": 8738,
+      "3": 5447,
+      "4": 10761,
+      "6": 5156,
+      "8": 2321,
+      "12": 1466,
+      "16": 435,
+      "24": 1278
+    }
+  },
+  "validation_counts": {
+    "sequences": 98,
+    "intervals": 42002,
+    "observed_intervals": 42002,
+    "missing_intervals": 0,
+    "fully_exact_sequences": 5,
+    "sequences_with_any_exact_label": 96,
+    "label_counts": {
+      "0": 1186,
+      "1": 5214,
+      "2": 8738,
+      "3": 5447,
+      "4": 10761,
+      "6": 5156,
+      "8": 2321,
+      "12": 1466,
+      "16": 435,
+      "24": 1278
+    }
+  },
+  "train_labeled_interval_count": 35316,
+  "history": [
+    {
+      "epoch": 1,
+      "train_nll_per_observed_interval": 216.85533203125,
+      "val_nll_per_observed_interval": 183.97044612709598
+    },
+    {
+      "epoch": 2,
+      "train_nll_per_observed_interval": 183.00423217773437,
+      "val_nll_per_observed_interval": 138.04142611392663
+    },
+    {
+      "epoch": 3,
+      "train_nll_per_observed_interval": 130.9706478881836,
+      "val_nll_per_observed_interval": 112.39373803727939
+    },
+    {
+      "epoch": 4,
+      "train_nll_per_observed_interval": 109.60475463867188,
+      "val_nll_per_observed_interval": 104.30461023553293
+    },
+    {
+      "epoch": 5,
+      "train_nll_per_observed_interval": 102.77087097167968,
+      "val_nll_per_observed_interval": 101.62981128833401
+    },
+    {
+      "epoch": 6,
+      "train_nll_per_observed_interval": 103.30841949462891,
+      "val_nll_per_observed_interval": 99.59149578983265
+    },
+    {
+      "epoch": 7,
+      "train_nll_per_observed_interval": 99.57410430908203,
+      "val_nll_per_observed_interval": 98.25651877142464
+    },
+    {
+      "epoch": 8,
+      "train_nll_per_observed_interval": 100.27214996337891,
+      "val_nll_per_observed_interval": 97.13132820222033
+    },
+    {
+      "epoch": 9,
+      "train_nll_per_observed_interval": 99.39991394042968,
+      "val_nll_per_observed_interval": 96.24205947613683
+    },
+    {
+      "epoch": 10,
+      "train_nll_per_observed_interval": 99.28573760986328,
+      "val_nll_per_observed_interval": 95.74688665229169
+    }
+  ],
+  "checkpoint": "/home/sogang/jaehoon/explore_this/neural_subdivision_hmm/results/checkpoints/partial_family.pt"
+}

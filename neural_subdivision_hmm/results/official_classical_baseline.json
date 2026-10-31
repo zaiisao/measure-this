@@ -1,0 +1,11 @@
+{
+  "source": "mel50",
+  "model": "gauss",
+  "decoder": "hmm",
+  "balanced_accuracy": 0.6154344414248734,
+  "accuracy": 0.6889123692014043,
+  "kappa": 0.5,
+  "p_stay": 0.99,
+  "test_n": 29339,
+  "note": "Original matched classical HMM, retained unchanged in subdivision_hmm/results/experiment/results.csv"
+}

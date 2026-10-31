@@ -1,0 +1,239 @@
+{
+  "name": "broad_l5_s0",
+  "mode": "supervised_only",
+  "constraint_mode": "exact",
+  "val_constraint_mode": "exact",
+  "lambda_state": 5.0,
+  "lambda_1_identity": "at lambda=1, acoustic NLL/observed + posterior-state NLL/observed equals original constrained joint NLL/observed",
+  "state_normalization": "reported per informative constrained interval, then weighted by n_informative/n_observed in objective",
+  "rank": 2,
+  "hidden": 48,
+  "p_stay": 0.99,
+  "seed": 0,
+  "epochs_run": 10,
+  "best_epoch": 10,
+  "best_val_weighted_objective": 116.10716247558594,
+  "train_counts": {
+    "sequences": 96,
+    "intervals": 41792,
+    "observed_intervals": 41792,
+    "missing_intervals": 0,
+    "fully_exact_sequences": 5,
+    "sequences_with_any_exact_label": 96,
+    "label_counts": {
+      "0": 1186,
+      "1": 5214,
+      "2": 8738,
+      "3": 5447,
+      "4": 10761,
+      "6": 5156,
+      "8": 2146,
+      "12": 1466,
+      "16": 400,
+      "24": 1278
+    }
+  },
+  "validation_counts": {
+    "sequences": 31,
+    "intervals": 15237,
+    "observed_intervals": 15237,
+    "missing_intervals": 0,
+    "fully_exact_sequences": 4,
+    "sequences_with_any_exact_label": 31,
+    "label_counts": {
+      "0": 457,
+      "1": 1465,
+      "2": 3553,
+      "3": 1971,
+      "4": 5224,
+      "6": 1260,
+      "8": 364,
+      "12": 655,
+      "16": 41,
+      "24": 247
+    }
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "acoustic_nll_per_observed": 196.97068891937846,
+      "state_nll_per_informative": 1.3877133693386143,
+      "state_contribution_per_observed": 1.1726762383126554,
+      "joint_nll_per_observed": 198.14336341683386,
+      "weighted_objective_per_observed": 202.83407010838596,
+      "observed_intervals": 41792,
+      "informative_intervals": 35316,
+      "gradient_diagnostics_first_batch": {
+        "acoustic_grad_l2": 48.96677780151367,
+        "state_contribution_grad_l2": 33.23044204711914
+      },
+      "val_acoustic_nll_per_observed": 231.68124389648438,
+      "val_state_nll_per_informative": 1.2911769151687622,
+      "val_joint_nll_per_observed": 232.8229522705078,
+      "val_weighted_objective_per_observed": 237.3897247314453
+    },
+    {
+      "epoch": 2,
+      "acoustic_nll_per_observed": 184.97711427544013,
+      "state_nll_per_informative": 1.2609596438229131,
+      "state_contribution_per_observed": 1.0655640022312882,
+      "joint_nll_per_observed": 186.0426809696472,
+      "weighted_objective_per_observed": 190.30493560866958,
+      "observed_intervals": 41792,
+      "informative_intervals": 35316,
+      "gradient_diagnostics_first_batch": {
+        "acoustic_grad_l2": 44.7567024230957,
+        "state_contribution_grad_l2": 9.691423416137695
+      },
+      "val_acoustic_nll_per_observed": 209.53536987304688,
+      "val_state_nll_per_informative": 1.4015692472457886,
+      "val_joint_nll_per_observed": 210.77468872070312,
+      "val_weighted_objective_per_observed": 215.73191833496094
+    },
+    {
+      "epoch": 3,
+      "acoustic_nll_per_observed": 160.82599573515094,
+      "state_nll_per_informative": 1.592713819515234,
+      "state_contribution_per_observed": 1.345910251962098,
+      "joint_nll_per_observed": 162.17190658042114,
+      "weighted_objective_per_observed": 167.55554657745506,
+      "observed_intervals": 41792,
+      "informative_intervals": 35316,
+      "gradient_diagnostics_first_batch": {
+        "acoustic_grad_l2": 56.08085250854492,
+        "state_contribution_grad_l2": 29.80182456970215
+      },
+      "val_acoustic_nll_per_observed": 169.55706787109375,
+      "val_state_nll_per_informative": 3.0984158515930176,
+      "val_joint_nll_per_observed": 172.29678344726562,
+      "val_weighted_objective_per_observed": 183.255615234375
+    },
+    {
+      "epoch": 4,
+      "acoustic_nll_per_observed": 133.24320508418734,
+      "state_nll_per_informative": 2.1340378486822544,
+      "state_contribution_per_observed": 1.8033518535619855,
+      "joint_nll_per_observed": 135.04655763913078,
+      "weighted_objective_per_observed": 142.25996200213206,
+      "observed_intervals": 41792,
+      "informative_intervals": 35316,
+      "gradient_diagnostics_first_batch": {
+        "acoustic_grad_l2": 60.342403411865234,
+        "state_contribution_grad_l2": 95.78138732910156
+      },
+      "val_acoustic_nll_per_observed": 144.16175842285156,
+      "val_state_nll_per_informative": 3.9747843742370605,
+      "val_joint_nll_per_observed": 147.67637634277344,
+      "val_weighted_objective_per_observed": 161.73486328125
+    },
+    {
+      "epoch": 5,
+      "acoustic_nll_per_observed": 119.51543623656262,
+      "state_nll_per_informative": 2.519979518622933,
+      "state_contribution_per_observed": 2.129488817948112,
+      "joint_nll_per_observed": 121.64492277365184,
+      "weighted_objective_per_observed": 130.16287938997172,
+      "observed_intervals": 41792,
+      "informative_intervals": 35316,
+      "gradient_diagnostics_first_batch": {
+        "acoustic_grad_l2": 28.735340118408203,
+        "state_contribution_grad_l2": 48.518558502197266
+      },
+      "val_acoustic_nll_per_observed": 132.11985778808594,
+      "val_state_nll_per_informative": 3.694312810897827,
+      "val_joint_nll_per_observed": 135.386474609375,
+      "val_weighted_objective_per_observed": 148.4529571533203
+    },
+    {
+      "epoch": 6,
+      "acoustic_nll_per_observed": 114.11100048328797,
+      "state_nll_per_informative": 2.3890854125520304,
+      "state_contribution_per_observed": 2.0188777859324154,
+      "joint_nll_per_observed": 116.12987768832612,
+      "weighted_objective_per_observed": 124.20539046429201,
+      "observed_intervals": 41792,
+      "informative_intervals": 35316,
+      "gradient_diagnostics_first_batch": {
+        "acoustic_grad_l2": 11.280145645141602,
+        "state_contribution_grad_l2": 28.88521957397461
+      },
+      "val_acoustic_nll_per_observed": 125.00132751464844,
+      "val_state_nll_per_informative": 3.317885160446167,
+      "val_joint_nll_per_observed": 127.93511199951172,
+      "val_weighted_objective_per_observed": 139.67018127441406
+    },
+    {
+      "epoch": 7,
+      "acoustic_nll_per_observed": 110.21374865805025,
+      "state_nll_per_informative": 2.288360053030142,
+      "state_contribution_per_observed": 1.9337606152568074,
+      "joint_nll_per_observed": 112.14750855239208,
+      "weighted_objective_per_observed": 119.8825517330564,
+      "observed_intervals": 41792,
+      "informative_intervals": 35316,
+      "gradient_diagnostics_first_batch": {
+        "acoustic_grad_l2": 85.36553955078125,
+        "state_contribution_grad_l2": 31.29805564880371
+      },
+      "val_acoustic_nll_per_observed": 123.18024444580078,
+      "val_state_nll_per_informative": 2.3023691177368164,
+      "val_joint_nll_per_observed": 125.216064453125,
+      "val_weighted_objective_per_observed": 133.35935974121094
+    },
+    {
+      "epoch": 8,
+      "acoustic_nll_per_observed": 108.32142520790626,
+      "state_nll_per_informative": 1.4550465186193935,
+      "state_contribution_per_observed": 1.2295755850775867,
+      "joint_nll_per_observed": 109.55100138337104,
+      "weighted_objective_per_observed": 114.4693034890965,
+      "observed_intervals": 41792,
+      "informative_intervals": 35316,
+      "gradient_diagnostics_first_batch": {
+        "acoustic_grad_l2": 77.27864074707031,
+        "state_contribution_grad_l2": 31.125246047973633
+      },
+      "val_acoustic_nll_per_observed": 118.79778289794922,
+      "val_state_nll_per_informative": 1.6783052682876587,
+      "val_joint_nll_per_observed": 120.28179931640625,
+      "val_weighted_objective_per_observed": 126.21781921386719
+    },
+    {
+      "epoch": 9,
+      "acoustic_nll_per_observed": 106.11016453955476,
+      "state_nll_per_informative": 1.1364289280619975,
+      "state_contribution_per_observed": 0.9603303030110428,
+      "joint_nll_per_observed": 107.07049274189,
+      "weighted_objective_per_observed": 110.91181668844558,
+      "observed_intervals": 41792,
+      "informative_intervals": 35316,
+      "gradient_diagnostics_first_batch": {
+        "acoustic_grad_l2": 21.681079864501953,
+        "state_contribution_grad_l2": 59.317893981933594
+      },
+      "val_acoustic_nll_per_observed": 115.80738830566406,
+      "val_state_nll_per_informative": 0.8923373818397522,
+      "val_joint_nll_per_observed": 116.5964126586914,
+      "val_weighted_objective_per_observed": 119.7525405883789
+    },
+    {
+      "epoch": 10,
+      "acoustic_nll_per_observed": 104.92383910028711,
+      "state_nll_per_informative": 0.8789472581036216,
+      "state_contribution_per_observed": 0.7427474484874498,
+      "joint_nll_per_observed": 105.66658739766154,
+      "weighted_objective_per_observed": 108.63757582736783,
+      "observed_intervals": 41792,
+      "informative_intervals": 35316,
+      "gradient_diagnostics_first_batch": {
+        "acoustic_grad_l2": 20.65839385986328,
+        "state_contribution_grad_l2": 37.27116394042969
+      },
+      "val_acoustic_nll_per_observed": 113.10228729248047,
+      "val_state_nll_per_informative": 0.6796605587005615,
+      "val_joint_nll_per_observed": 113.70326232910156,
+      "val_weighted_objective_per_observed": 116.10716247558594
+    }
+  ],
+  "checkpoint": "/home/sogang/jaehoon/explore_this/neural_subdivision_hmm/diagnostics/results/broad_l5_s0.pt"
+}

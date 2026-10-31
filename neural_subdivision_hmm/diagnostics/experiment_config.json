@@ -1,0 +1,50 @@
+{
+  "base_flexible_model": {
+    "architecture": "NeuralGaussianEmission from ../model.py",
+    "hidden": 48,
+    "rank": 2,
+    "p_stay": 0.99,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0008,
+    "weight_decay": 0.00001,
+    "gradient_clip_norm": 2.0,
+    "epochs_max": 10,
+    "patience": 3,
+    "batch_sequences": 4
+  },
+  "objective_sweep": {
+    "mode": "supervised_only",
+    "lambda_state_values": [0, 1, 2, 5, 10],
+    "seed": 0,
+    "lambda_one_identity": "exactly original constrained joint NLL divided by observed intervals"
+  },
+  "repeat_seeds": {
+    "broad_lambda_10": [0, 1, 2],
+    "incremental_30_lambda_10": [0, 1, 2],
+    "structured_conditioned_lambda_10": [0, 1, 2]
+  },
+  "incremental_data": {
+    "retained_sequences": 5,
+    "limit_sequences_values": [10, 30],
+    "additional_sequence_rng_seed": 20261031,
+    "model_seed_for_initial_comparison": 0
+  },
+  "high_confidence_ablation": {
+    "mode": "supervised_only",
+    "lambda_state": 10,
+    "seed": 0,
+    "behavior": "low-confidence labels become all-state masks; their acoustic observations remain in the likelihood"
+  },
+  "structured_emission": {
+    "covariance": "s^2 I + tau_mu^2 11^T + tau_a^2 h_r h_r^T",
+    "classical_s2": 1.0,
+    "classical_tm2": 1.0,
+    "classical_ta2": 16.0,
+    "width": 0.03,
+    "scale_floor": 0.05,
+    "conditioning": "ratio template plus exogenous standardized log duration",
+    "lambda_state": 10,
+    "seeds": [0, 1, 2]
+  },
+  "test_protocol": "Original 18-work split, same 29,339 exact-label intervals. Validation selects decoder persistence and temperature. Follow-up test results are exploratory."
+}

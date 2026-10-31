@@ -1,0 +1,9 @@
+{
+  "n_work_bootstraps": 5000,
+  "delta_bacc_nhmm_minus_classical": 0.04741758883046232,
+  "paired_delta_ci95": [
+    -0.06051847160188307,
+    0.11698932472826731
+  ],
+  "bootstrap_fraction_delta_le_zero": 0.2392
+}

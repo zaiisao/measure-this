@@ -1,0 +1,9 @@
+model,subgroup,value,n,balanced_accuracy,accuracy
+supervised_exact,ref_ambiguous,False,28854,0.6614016780829164,0.6712760795730228
+supervised_exact,ref_ambiguous,True,485,0.6562037962037962,0.7463917525773196
+supervised_exact,ref_partial_beat,False,25979,0.6874581393695542,0.6758920666692328
+supervised_exact,ref_partial_beat,True,3360,0.55587867991543,0.6464285714285715
+classical_gaussian_uniform_init_p_0_99_temp_0_5,ref_ambiguous,False,28854,0.6150261919963751,0.6928328827892146
+classical_gaussian_uniform_init_p_0_99_temp_0_5,ref_ambiguous,True,485,0.5394542494542495,0.5298969072164949
+classical_gaussian_uniform_init_p_0_99_temp_0_5,ref_partial_beat,False,25979,0.6517302771177865,0.7402132491627853
+classical_gaussian_uniform_init_p_0_99_temp_0_5,ref_partial_beat,True,3360,0.4595663953112779,0.30297619047619045

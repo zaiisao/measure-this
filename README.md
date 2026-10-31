@@ -41,3 +41,7 @@ This note summarizes the comparison only. It does not include audio, feature cac
 ## Beat-conditioned subdivision HMM
 
 [`subdivision_hmm/`](subdivision_hmm/) is a standalone experiment: given ground-truth beats, infer each beat's notated subdivision ratio (1/2/3/4/6) from onset evidence with fixed beat-relative lattices, normalized onset likelihoods and an exact HMM persistence prior, on a work-disjoint ASAP split. With ideal (performance-MIDI) onsets it reaches 0.861 test balanced accuracy (0.944 on high-confidence labels); from audio-derived onsets the best is 0.615, so the acoustic evidence is the bottleneck. See [the report](subdivision_hmm/REPORT.md).
+
+## Neural subdivision HMM and training-data scaling
+
+[`neural_subdivision_hmm/`](neural_subdivision_hmm/) extends the classical HMM with a normalized neural Gaussian emission trained with exact forward–backward and a weighted posterior-state term ([report](neural_subdivision_hmm/REPORT.md), [diagnostics](neural_subdivision_hmm/diagnostics/REPORT.md)). The [data-scaling study](neural_subdivision_hmm/data_scaling/REPORT.md) (141 runs) shows that the earlier 30-work > 96-work result was an optimization-schedule artifact: at matched optimizer updates, 96 works reaches 0.768 test balanced accuracy versus 0.769 for the original 30-work subset and 0.759 for random 30-work subsets, with performance plateauing beyond about 30–50 works.
