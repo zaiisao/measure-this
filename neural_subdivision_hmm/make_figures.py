@@ -10,14 +10,14 @@ import torch
 HERE=Path(__file__).resolve().parent
 RES=HERE/'results'
 RATIOS=[1,2,3,4,6]
-import sys
-sys.path.insert(0,str(HERE))
-from model import forward_backward,persistence_log_transition
+from neural_subdivision_hmm.data import load_sequences
+from neural_subdivision_hmm.model import NeuralGaussianEmission
+from subdivision_hmm import metrics as M
+from subdivision_hmm.hmm import forward_backward,persistence_log_transition
 
 def bacc(d):
     z=d[d.label.isin(RATIOS)]
-    vals=[float((z.loc[z.label==r,'pred']==r).mean()) for r in RATIOS if (z.label==r).any()]
-    return float(np.mean(vals)) if vals else float('nan')
+    return M.balanced_accuracy(z.label.to_numpy(),z.pred.to_numpy())
 
 def calibrate_classical(d,p_stay=.99,temperature=.5):
     source=pd.read_csv(HERE.parent/'subdivision_hmm/results/experiment/pred_mel50_gauss_hmm.csv',
@@ -36,11 +36,8 @@ def calibrate_classical(d,p_stay=.99,temperature=.5):
 
 def confidence_metrics(d):
     z=d[d.label.isin(RATIOS)]; p=z[[f'post_{r}' for r in RATIOS]].to_numpy(); y=z.label.to_numpy(); pred=z.pred.to_numpy()
-    one=np.zeros_like(p)
-    for j,r in enumerate(RATIOS): one[:,j]=(y==r)
-    conf=p.max(1); bins=np.minimum((conf*10).astype(int),9); correct=(pred==y)
-    ece=sum(np.mean(bins==k)*abs(np.mean(conf[bins==k])-np.mean(correct[bins==k])) for k in range(10) if np.any(bins==k))
-    return {'n':len(z),'accuracy':float(correct.mean()),'balanced_accuracy':bacc(z),'ece':float(ece),'brier':float(np.mean(np.sum((p-one)**2,axis=1)))}
+    correct=(pred==y)
+    return {'n':len(z),'accuracy':float(correct.mean()),'balanced_accuracy':bacc(z),'ece':M.ece(p.max(1),correct),'brier':M.brier(y,p)}
 
 def paired_bootstrap(a,b,n=5000,seed=199):
     # Resample works jointly and compute balanced accuracy from summed class counts.
@@ -148,8 +145,6 @@ def main():
                 rows.append({'model':name,'subgroup':col,'value':flag,'n':len(g),'balanced_accuracy':bacc(g),'accuracy':float((g.label==g.pred).mean()) if len(g) else float('nan')})
     pd.DataFrame(rows).to_csv(RES/'score_ambiguity_metrics.csv',index=False)
     # Compare accuracy across quartiles of single-interval acoustic evidence margin.
-    sys.path.insert(0,str(HERE)); from data import load_sequences
-    from model import NeuralGaussianEmission
     splits,norm=load_sequences(); ck=torch.load(RES/'checkpoints/supervised_exact.pt',map_location='cpu',weights_only=False)
     cfg=ck['config']; net=NeuralGaussianEmission(m=norm['feature_dim'],hidden=cfg['hidden'],rank=cfg['rank']); net.load_state_dict(ck['model']); net.eval()
     margins=[]

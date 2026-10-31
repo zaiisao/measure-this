@@ -10,15 +10,14 @@ the coarsest lattice of that beat's own score attacks) next to the measure-level
 """
 import csv
 import json
-import sys
 from collections import defaultdict
 from pathlib import Path
 
 import numpy as np
 
+from neural_subdivision_hmm.data_scaling import common
+
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE))
-import common  # noqa: E402
 
 INTERVALS = HERE.parents[1] / "subdivision_hmm/results/intervals.jsonl"
 OUT = HERE / "results"

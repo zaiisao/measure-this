@@ -1,15 +1,11 @@
 import math
-import sys
 import unittest
-from pathlib import Path
 
 import torch
 
-ROOT=Path(__file__).resolve().parents[2]
-sys.path.insert(0,str(ROOT))
-sys.path.insert(0,str(ROOT/'diagnostics'))
-from model import NeuralGaussianEmission,forward_log_prob,persistence_log_transition
-from objective import aggregate_terms,objective_from_emissions,sequence_terms
+from neural_subdivision_hmm.diagnostics.objective import aggregate_terms,objective_from_emissions,sequence_terms
+from neural_subdivision_hmm.model import NeuralGaussianEmission
+from subdivision_hmm.hmm import forward_log_prob,persistence_log_transition
 
 
 class NllDecompositionTests(unittest.TestCase):

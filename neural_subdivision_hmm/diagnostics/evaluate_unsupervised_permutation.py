@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 """Validation-only latent-state permutation analysis for the unsupervised checkpoint."""
-import itertools,json,sys
+import itertools,json
 from pathlib import Path
 import numpy as np
-import pandas as pd
+from neural_subdivision_hmm.data import RATIOS,load_sequences
+from neural_subdivision_hmm.evaluate import DECODER_GRID,exact_metrics,model_from_checkpoint,score_sequences
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parent
-sys.path.insert(0,str(ROOT));sys.path.insert(0,str(ROOT.parent))
-from data import RATIOS,load_sequences
-from evaluate import exact_metrics,model_from_checkpoint,score_sequences
 
 def score_mapped(df,perm):
     z=df[df.label.isin(RATIOS)].copy()
@@ -18,12 +16,11 @@ def score_mapped(df,perm):
 def main():
     data,_=load_sequences();model,cfg=model_from_checkpoint(ROOT/'results/checkpoints/unsupervised.pt')
     vals=[]
-    for p in (.95,.99,.999):
-        for temp in (.25,.5,1.):
-            v,_=score_sequences(model,data['val'],temp,p)
-            for perm in itertools.permutations(range(len(RATIOS))):
-                m=score_mapped(v,perm)
-                vals.append((m['balanced_accuracy'],m['accuracy'],-abs(temp-1),-abs(p-.99),p,temp,perm,m))
+    for p,temp in DECODER_GRID:
+        v,_=score_sequences(model,data['val'],temp,p)
+        for perm in itertools.permutations(range(len(RATIOS))):
+            m=score_mapped(v,perm)
+            vals.append((m['balanced_accuracy'],m['accuracy'],-abs(temp-1),-abs(p-.99),p,temp,perm,m))
     best=max(vals,key=lambda x:x[:6]);_,_,_,_,pbest,tbest,perm,bval=best
     test,_=score_sequences(model,data['test'],tbest,pbest);_,raw=exact_metrics(test)
     btest=score_mapped(test,perm)

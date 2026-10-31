@@ -10,30 +10,19 @@ from __future__ import annotations
 import math
 from typing import Sequence
 
-import numpy as np
 import torch
 from torch import nn
 from torch.nn import functional as F
 
+from subdivision_hmm.observation import subdivision_templates
 
-def subdivision_template(ratios: Sequence[int], m: int = 48, width: float = 0.03,
-                         delta: float = 0.06, *, device=None, dtype=torch.float32):
-    """Return the exact unnormalized Gaussian-bump template used by GaussianTemplate."""
-    phase = torch.linspace(delta, 1.0 - delta, m, device=device, dtype=dtype)
-    rows = []
-    for ratio in ratios:
-        slots = torch.arange(1, int(ratio), device=device, dtype=dtype) / float(ratio)
-        if len(slots):
-            h = torch.exp(-0.5 * ((phase[:, None] - slots[None, :]) / width).square()).sum(1)
-        else:
-            h = torch.zeros_like(phase)
-        rows.append(h)
-    return torch.stack(rows)
+
+def subdivision_template(ratios: Sequence[int], m: int = 48, width: float = 0.03, delta: float = 0.06):
+    """The exact unnormalized template used by the classical GaussianTemplate."""
+    return torch.as_tensor(subdivision_templates(ratios, m, width, delta), dtype=torch.float32)
 
 
 def _inv_softplus(x: float) -> float:
-    if x <= 0:
-        raise ValueError("scale minus floor must be positive")
     return math.log(math.expm1(x))
 
 
@@ -110,10 +99,6 @@ class StructuredNeuralGaussian(nn.Module):
 
     def log_prob(self, y: torch.Tensor, log_duration_z: torch.Tensor):
         """Exact normalized Gaussian log density using Woodbury and determinant lemma."""
-        if y.ndim != 2 or y.shape[1] != self.m:
-            raise ValueError(f"expected observations of shape (N,{self.m})")
-        if y.shape[0] != log_duration_z.numel():
-            raise ValueError("observation and duration batch sizes differ")
         diag, u, _ = self.distribution_parameters(log_duration_z)
         delta = y[:, None, :]
         dinv = diag.reciprocal()[..., None]

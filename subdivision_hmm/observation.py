@@ -70,17 +70,22 @@ def standardise(env):
     return (env - med) / mad
 
 
+def subdivision_templates(ratios, m=48, width=0.03, delta=DELTA):
+    """(K, m) Gaussian bumps at the slots k/r of each ratio's lattice (zeros for r = 1)."""
+    phase = np.linspace(delta, 1 - delta, m)
+    return np.stack([np.exp(-0.5 * ((phase[:, None] - np.arange(1, r)[None, :] / r) / width) ** 2).sum(1)
+                     for r in ratios])
+
+
 class GaussianTemplate:
     normalized = True
 
     def __init__(self, ratios, s2=1.0, tm2=4.0, ta2=4.0, width=0.03, m=48, delta=DELTA):
         self.ratios, self.m = list(ratios), m
-        phase = np.linspace(delta, 1 - delta, m)
         self.inv, self.logdet = [], []
-        for r in self.ratios:
-            h = np.exp(-0.5 * ((phase[:, None] - np.arange(1, r)[None, :] / r) / width) ** 2).sum(1)
+        for h in subdivision_templates(self.ratios, m, width, delta):
             cov = s2 * np.eye(m) + tm2 * np.ones((m, m)) + ta2 * np.outer(h, h)
-            sign, ld = np.linalg.slogdet(cov)
+            _, ld = np.linalg.slogdet(cov)
             self.inv.append(np.linalg.inv(cov)); self.logdet.append(ld)
         self.const = -0.5 * m * np.log(2 * np.pi)
 

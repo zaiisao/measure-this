@@ -132,10 +132,10 @@ The first structured training attempt produced an infinite regularizer, which le
 From the repository root:
 
 ```sh
-python -m unittest discover -s neural_subdivision_hmm/diagnostics/tests -v
-python neural_subdivision_hmm/diagnostics/audit_supervision.py
-python neural_subdivision_hmm/diagnostics/weighted_train.py --name broad_l10_s0 --mode supervised_only --lambda-state 10 --seed 0
-python neural_subdivision_hmm/diagnostics/structured_train.py --name structured_broad_l10_s0 --mode supervised_only --lambda-state 10 --seed 0 --condition-on-ratio --condition-on-duration
+python -m unittest discover -s neural_subdivision_hmm/diagnostics/tests -t . -v
+python -m neural_subdivision_hmm.diagnostics.audit_supervision
+python -m neural_subdivision_hmm.diagnostics.weighted_train --name broad_l10_s0 --mode supervised_only --lambda-state 10 --seed 0
+python -m neural_subdivision_hmm.diagnostics.structured_train --name structured_broad_l10_s0 --mode supervised_only --lambda-state 10 --seed 0 --condition-on-ratio --condition-on-duration
 ```
 
 The sweep and selected run metadata, checkpoints, predictions, audit tables, decompositions, permutation analysis, and SVG figures are under `diagnostics/results/` or beside this report. The parent `neural_subdivision_hmm/` code, checkpoints, and report remain unchanged.

@@ -1,0 +1,12 @@
+__pycache__/
+*.egg-info/
+*.pt
+*predictions*.csv
+neural_subdivision_hmm/data_scaling/logs/
+subdivision_hmm/results/onsets
+subdivision_hmm/results/experiment/verify_refactor.csv
+subdivision_hmm/results/intervals.jsonl
+subdivision_hmm/results/experiment/pred_*.csv
+subdivision_hmm/results/experiment/stale_naive_standardised/
+subdivision_hmm/results/*.log
+subdivision_hmm/results/analyze.err

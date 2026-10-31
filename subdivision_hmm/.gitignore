@@ -1,8 +1,0 @@
-__pycache__/
-# Large or regenerable outputs (rebuild with the scripts in REPORT.md)
-results/intervals.jsonl
-results/onsets/
-results/experiment/pred_*.csv
-results/experiment/stale_naive_standardised/
-results/*.log
-results/analyze.err

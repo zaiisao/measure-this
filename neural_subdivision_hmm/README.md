@@ -13,17 +13,17 @@ Unlabeled intervals use the unconstrained forward likelihood. Exact labels mask 
 The runs used Python 3.10, PyTorch 2.6 CPU, NumPy, pandas, and SciPy. Set the repository root as the working directory and use a Python environment with those packages.
 
 ```sh
-python -m unittest discover -s neural_subdivision_hmm/tests -v
-python neural_subdivision_hmm/train.py --name supervised_exact --mode exact --rank 2 --hidden 48 --epochs 10 --patience 3
-python neural_subdivision_hmm/train.py --name supervised_only --mode supervised_only --rank 2 --hidden 48 --epochs 10 --patience 3
-python neural_subdivision_hmm/train.py --name unsupervised --mode unsupervised --rank 2 --hidden 48 --epochs 10 --patience 3
-python neural_subdivision_hmm/train.py --name mixed --mode mixed --rank 2 --hidden 48 --epochs 10 --patience 3
-python neural_subdivision_hmm/train.py --name partial_family --mode partial_family --rank 2 --hidden 48 --epochs 10 --patience 3
-python neural_subdivision_hmm/train.py --name supervised_diag --mode supervised_only --rank 0 --hidden 48 --epochs 10 --patience 3
-python neural_subdivision_hmm/train.py --name capacity16 --mode supervised_only --rank 2 --hidden 16 --epochs 10 --patience 3
-python neural_subdivision_hmm/train.py --name transition095 --mode supervised_only --rank 2 --hidden 48 --p-stay 0.95 --epochs 10 --patience 3
-python neural_subdivision_hmm/evaluate.py
-python neural_subdivision_hmm/make_figures.py
+python -m unittest discover -s neural_subdivision_hmm/tests -t . -v
+python -m neural_subdivision_hmm.train --name supervised_exact --mode exact --rank 2 --hidden 48 --epochs 10 --patience 3
+python -m neural_subdivision_hmm.train --name supervised_only --mode supervised_only --rank 2 --hidden 48 --epochs 10 --patience 3
+python -m neural_subdivision_hmm.train --name unsupervised --mode unsupervised --rank 2 --hidden 48 --epochs 10 --patience 3
+python -m neural_subdivision_hmm.train --name mixed --mode mixed --rank 2 --hidden 48 --epochs 10 --patience 3
+python -m neural_subdivision_hmm.train --name partial_family --mode partial_family --rank 2 --hidden 48 --epochs 10 --patience 3
+python -m neural_subdivision_hmm.train --name supervised_diag --mode supervised_only --rank 0 --hidden 48 --epochs 10 --patience 3
+python -m neural_subdivision_hmm.train --name capacity16 --mode supervised_only --rank 2 --hidden 16 --epochs 10 --patience 3
+python -m neural_subdivision_hmm.train --name transition095 --mode supervised_only --rank 2 --hidden 48 --p-stay 0.95 --epochs 10 --patience 3
+python -m neural_subdivision_hmm.evaluate
+python -m neural_subdivision_hmm.make_figures
 ```
 
 The exact settings and validation decoder grid are in [experiment_config.json](experiment_config.json). Training JSON and checkpoints preserve the run histories and weights. `evaluate.py` selects posterior temperature and transition persistence on validation balanced accuracy, then reports both raw generative inference and the secondary calibrated decoder on test. Test labels do not choose model or decoder settings.

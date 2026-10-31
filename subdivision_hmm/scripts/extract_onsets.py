@@ -4,19 +4,17 @@ per train/val work, the first in sorted order). Writes results/onsets/<stem>.npz
 audio/annotation alignment (median lag of envelope peaks around annotated beats)."""
 import csv
 import json
-import sys
 from collections import defaultdict
 from multiprocessing import Pool
 from pathlib import Path
 
 import numpy as np
 
-HERE = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(HERE))
-import onsets as O  # noqa: E402
+from subdivision_hmm import onsets as O
+from subdivision_hmm.config import INVENTORY as INV
 
+HERE = Path(__file__).resolve().parents[1]
 OUT = HERE / "results/onsets"
-from config import INVENTORY as INV  # noqa: E402
 
 
 def selected():

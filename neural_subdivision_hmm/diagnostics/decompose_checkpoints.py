@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 """Recompute acoustic/state NLL and gradient components for original checkpoints."""
 from __future__ import annotations
-import json,sys
+import json
 from pathlib import Path
 import numpy as np
 import torch
 
+from neural_subdivision_hmm.data import RATIOS,choose_sequences,constraint_for,load_sequences
+from neural_subdivision_hmm.evaluate import model_from_checkpoint
+from subdivision_hmm.hmm import exclude_missing,forward_log_prob,persistence_log_transition
+
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parent
-sys.path.insert(0,str(ROOT));sys.path.insert(0,str(ROOT.parent))
-from data import RATIOS,load_sequences,constraint_for
-from evaluate import model_from_checkpoint
-from model import exclude_missing,forward_log_prob,persistence_log_transition
-from train import choose_sequences
 
 def run():
     torch.set_num_threads(2);splits,_=load_sequences();k=len(RATIOS)

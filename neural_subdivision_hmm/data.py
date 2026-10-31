@@ -1,17 +1,12 @@
 """Adapter for the frozen subdivision_hmm interval and mel50 artifacts."""
 from __future__ import annotations
 
-import sys
 from dataclasses import dataclass
-from pathlib import Path
 from typing import Optional
 
 import numpy as np
 
-ROOT = Path(__file__).resolve().parents[1]
-CLASSICAL_SCRIPTS = ROOT / "subdivision_hmm" / "scripts"
-sys.path.insert(0, str(CLASSICAL_SCRIPTS))
-import run_experiment as classical  # noqa: E402
+from subdivision_hmm import dataset as classical
 
 RATIOS = (1, 2, 3, 4, 6)
 K = len(RATIOS)
@@ -102,6 +97,26 @@ def load_sequences(source="mel50"):
         for q in out[split]: q.log_duration=((q.log_duration-mu)/sd).astype(np.float32)
     return out, {'log_duration_mean':mu,'log_duration_std':sd,'feature_dim':int(out['train'][0].y.shape[1]),
                  'ratios':list(RATIOS),'train_sequences':len(out['train']),'val_sequences':len(out['val']),'test_sequences':len(out['test'])}
+
+
+def choose_sequences(sequences, mode):
+    """Training sequences and their constraint mode for a supervision regime."""
+    audio = [q for q in sequences if q.has_audio]
+    labeled = [q for q in audio if np.isin(q.labels, RATIOS).any()]
+    if mode == "exact": return [q for q in audio if q.fully_exact], "exact"
+    if mode == "supervised_only": return labeled, "exact"
+    if mode == "mixed": return labeled + [q for q in audio if not np.isin(q.labels, RATIOS).any()], "exact"
+    if mode == "partial_family": return audio, "family"
+    if mode == "unsupervised": return audio, "unlabeled"
+    raise ValueError(mode)
+
+
+def validation_sequences(sequences, mode):
+    """Validation sequences and constraint mode matching a training regime."""
+    audio = [q for q in sequences if q.has_audio]
+    if mode == "exact": return [q for q in audio if q.fully_exact], "exact"
+    if mode in ("supervised_only", "mixed"): return [q for q in audio if np.isin(q.labels, RATIOS).any()], "exact"
+    return audio, ("family" if mode == "partial_family" else "unlabeled")
 
 
 def constraint_for(seq: BeatSequence, mode: Optional[str]):

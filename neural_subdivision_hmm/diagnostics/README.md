@@ -32,14 +32,14 @@ The data-selection and high-confidence audit is reproduced by `audit_supervision
 From repository root:
 
 ```sh
-python -m unittest discover -s neural_subdivision_hmm/diagnostics/tests -v
-python neural_subdivision_hmm/diagnostics/weighted_train.py --name exact_l1 --mode exact --lambda-state 1 --epochs 10
-python neural_subdivision_hmm/diagnostics/weighted_train.py --name exact_l5 --mode exact --lambda-state 5 --epochs 10
-python neural_subdivision_hmm/diagnostics/weighted_train.py --name broad_l1 --mode supervised_only --lambda-state 1 --epochs 10
-python neural_subdivision_hmm/diagnostics/weighted_train.py --name broad_l5 --mode supervised_only --lambda-state 5 --epochs 10
-python neural_subdivision_hmm/diagnostics/weighted_train.py --name broad_l10 --mode supervised_only --lambda-state 10 --epochs 10
-python neural_subdivision_hmm/diagnostics/weighted_train.py --name incremental_n30 --mode supervised_only --limit-sequences 30 --lambda-state 10 --epochs 10
-python neural_subdivision_hmm/diagnostics/structured_train.py --name structured_l10 --mode supervised_only --lambda-state 10 --condition-on-ratio --condition-on-duration
+python -m unittest discover -s neural_subdivision_hmm/diagnostics/tests -t . -v
+python -m neural_subdivision_hmm.diagnostics.weighted_train --name exact_l1 --mode exact --lambda-state 1 --epochs 10
+python -m neural_subdivision_hmm.diagnostics.weighted_train --name exact_l5 --mode exact --lambda-state 5 --epochs 10
+python -m neural_subdivision_hmm.diagnostics.weighted_train --name broad_l1 --mode supervised_only --lambda-state 1 --epochs 10
+python -m neural_subdivision_hmm.diagnostics.weighted_train --name broad_l5 --mode supervised_only --lambda-state 5 --epochs 10
+python -m neural_subdivision_hmm.diagnostics.weighted_train --name broad_l10 --mode supervised_only --lambda-state 10 --epochs 10
+python -m neural_subdivision_hmm.diagnostics.weighted_train --name incremental_n30 --mode supervised_only --limit-sequences 30 --lambda-state 10 --epochs 10
+python -m neural_subdivision_hmm.diagnostics.structured_train --name structured_l10 --mode supervised_only --lambda-state 10 --condition-on-ratio --condition-on-duration
 ```
 
 Recommended initial sweep: `lambda_state ∈ {0,1,2,5,10}` on the same exact-five-sequence and 96-sequence supervised sets, with fixed initialization and seed. Select using validation posterior inference; then repeat only promising settings with at least three seeds. Checkpoint files go under `diagnostics/results/`; run summaries go beside this README.

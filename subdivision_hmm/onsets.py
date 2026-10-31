@@ -12,13 +12,11 @@ import io
 import sys
 import wave
 import zipfile
-from pathlib import Path
 
 import numpy as np
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from config import ASAP, EXPLORE_THIS_REPO, FEATURES, MAESTRO_ZIP  # noqa: E402,F401
-from midi_io import read_midi  # noqa: E402
+from subdivision_hmm.config import ASAP, EXPLORE_THIS_REPO, FEATURES, MAESTRO_ZIP
+from subdivision_hmm.labels import note_onset_times
 
 SR, HOP = 44100, 441  # 100 fps
 
@@ -61,7 +59,7 @@ def mel50(stem):
 
 
 def perfmidi(perf_id):
-    t = np.asarray(sorted(n.time for n in read_midi(ASAP / perf_id).notes))
+    t = np.asarray(note_onset_times(ASAP / perf_id))
     if not len(t):
         return t
     keep = [t[0]]

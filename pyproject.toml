@@ -1,0 +1,13 @@
+[project]
+name = "measure-this"
+version = "0.1.0"
+description = "Beat-conditioned subdivision HMMs (classical and neural) for metrical inference"
+requires-python = ">=3.10"
+dependencies = ["numpy", "scipy", "pandas", "torch", "librosa>=0.10", "scikit-learn>=1.7", "mido", "matplotlib"]
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["subdivision_hmm*", "neural_subdivision_hmm*"]

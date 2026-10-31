@@ -1,15 +1,13 @@
 import itertools
 import math
-import sys
 import unittest
-from pathlib import Path
 
 import numpy as np
 import torch
 
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from data import allowed_states
-from model import NeuralGaussianEmission, exclude_missing, forward_backward, forward_log_prob, persistence_log_transition, viterbi
+from neural_subdivision_hmm.data import allowed_states
+from neural_subdivision_hmm.model import NeuralGaussianEmission
+from subdivision_hmm.hmm import exclude_missing, forward_backward, forward_log_prob, persistence_log_transition, viterbi
 
 
 class NeuralHmmTests(unittest.TestCase):

@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -14,10 +13,8 @@ HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent
 ROOT = PROJECT.parent
 RESULTS = HERE / "results"
-sys.path.insert(0, str(PROJECT))
 
-from data import K, RATIOS, allowed_states, load_sequences, sequence_summary  # noqa: E402
-from train import choose_sequences  # noqa: E402
+from neural_subdivision_hmm.data import K, RATIOS, allowed_states, choose_sequences, load_sequences, sequence_summary  # noqa: E402
 
 
 def constraint_mask(label: int, mode: str) -> np.ndarray:

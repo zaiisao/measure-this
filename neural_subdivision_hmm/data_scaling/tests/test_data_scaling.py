@@ -1,5 +1,4 @@
 import json
-import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -7,9 +6,12 @@ from pathlib import Path
 import numpy as np
 import torch
 
+from neural_subdivision_hmm.data_scaling import common
+from neural_subdivision_hmm.diagnostics.objective import Weighting, batch_objective, marginal_state_nll
+from neural_subdivision_hmm.model import NeuralGaussianEmission
+from subdivision_hmm.hmm import forward_backward, persistence_log_transition
+
 HERE = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(HERE))
-import common  # noqa: E402
 
 IDS = [f"Composer{i % 4}::work_{i}" for i in range(40)]
 
@@ -55,8 +57,7 @@ class TestRealData(unittest.TestCase):
 
     def _setup(self):
         torch.manual_seed(0)
-        from model import NeuralGaussianEmission, persistence_log_transition
-        m = common.NeuralGaussianEmission(ratios=common.RATIOS, m=self.norm["feature_dim"], hidden=8, rank=1)
+        m = NeuralGaussianEmission(ratios=common.RATIOS, m=self.norm["feature_dim"], hidden=8, rank=1)
         li = torch.full((5,), -np.log(5)); lt = persistence_log_transition(5, .99)
         short = []
         for q in self.pool[:3]:
@@ -68,38 +69,47 @@ class TestRealData(unittest.TestCase):
         return m, li, lt, short
 
     def test_interval_scheme_is_original_objective(self):
-        from diagnostics.weighted_train import batch_terms
         m, li, lt, seqs = self._setup()
-        ours, _ = common.batch_loss(m, seqs, li, lt, 10.0, common.Weighting(), "cpu", reg_weight=0)
-        orig, _, _ = batch_terms(m, seqs, "exact", li, lt, "cpu", 10.0, regularizer_weight=0)
-        self.assertTrue(torch.allclose(ours, orig))
+        ours, base = batch_objective(m, seqs, "exact", li, lt, 10.0, Weighting(), reg_weight=0)
+        self.assertTrue(torch.allclose(ours, base.acoustic_nll_per_observed + 10.0 * base.state_nll_sum / base.observed_intervals))
 
     def test_work_scheme_single_sequence_equals_interval(self):
         m, li, lt, seqs = self._setup()
-        a, _ = common.batch_loss(m, seqs[:1], li, lt, 10.0, common.Weighting("work"), "cpu", reg_weight=0)
-        b, _ = common.batch_loss(m, seqs[:1], li, lt, 10.0, common.Weighting(), "cpu", reg_weight=0)
+        a, _ = batch_objective(m, seqs[:1], "exact", li, lt, 10.0, Weighting("work"), reg_weight=0)
+        b, _ = batch_objective(m, seqs[:1], "exact", li, lt, 10.0, Weighting(), reg_weight=0)
         self.assertTrue(torch.allclose(a, b, atol=1e-4))
 
     def test_marginal_variants(self):
         m, li, lt, seqs = self._setup()
-        ac, base = common.batch_loss(m, seqs, li, lt, 0.0, common.Weighting("marginal"), "cpu", reg_weight=0)
+        ac, base = batch_objective(m, seqs, "exact", li, lt, 0.0, Weighting("marginal"), reg_weight=0)
         self.assertTrue(torch.allclose(ac, base.acoustic_nll_per_observed))  # lambda 0 -> acoustic only
-        zero = common.Weighting("class_marginal", class_weights={r: 0.0 for r in common.RATIOS})
-        z, base = common.batch_loss(m, seqs, li, lt, 10.0, zero, "cpu", reg_weight=0)
+        zero = Weighting("class_marginal", class_weights={r: 0.0 for r in common.RATIOS})
+        z, base = batch_objective(m, seqs, "exact", li, lt, 10.0, zero, reg_weight=0)
         self.assertTrue(torch.allclose(z, base.acoustic_nll_per_observed))
-        one = common.Weighting("confidence_marginal", low_conf_weight=1.0)
-        a, _ = common.batch_loss(m, seqs, li, lt, 10.0, one, "cpu", reg_weight=0)
-        b, _ = common.batch_loss(m, seqs, li, lt, 10.0, common.Weighting("marginal"), "cpu", reg_weight=0)
+        one = Weighting("confidence_marginal", low_conf_weight=1.0)
+        a, _ = batch_objective(m, seqs, "exact", li, lt, 10.0, one, reg_weight=0)
+        b, _ = batch_objective(m, seqs, "exact", li, lt, 10.0, Weighting("marginal"), reg_weight=0)
         self.assertTrue(torch.allclose(a, b))
         a.backward()  # differentiable
 
+    def test_class_weight_keys_from_json(self):
+        # job files serialise class weights with string keys; they must still apply
+        m, li, lt, seqs = self._setup()
+        w = {r: float(i + 1) for i, r in enumerate(common.RATIOS)}
+        a, _ = batch_objective(m, seqs, "exact", li, lt, 10.0, Weighting("class_marginal", class_weights=w), reg_weight=0)
+        b, _ = batch_objective(m, seqs, "exact", li, lt, 10.0,
+                               Weighting("class_marginal", class_weights=json.loads(json.dumps(w))), reg_weight=0)
+        z, base = batch_objective(m, seqs, "exact", li, lt, 10.0, Weighting("class_marginal",
+                                  class_weights={str(r): 0.0 for r in common.RATIOS}), reg_weight=0)
+        self.assertTrue(torch.allclose(a, b))
+        self.assertFalse(torch.allclose(a, base.acoustic_nll_per_observed))
+
     def test_marginal_posterior_matches_forward_backward(self):
-        from model import forward_backward
         torch.manual_seed(1)
         em = torch.randn(7, 5); li = torch.full((5,), -np.log(5))
         lt = torch.log(torch.full((5, 5), .05) + torch.eye(5) * .75)
         allowed = torch.zeros(7, 5, dtype=torch.bool); allowed[:, 2] = True
-        nll, w = common.marginal_state_nll(li, lt, em, torch.ones(7, dtype=torch.bool), allowed, torch.ones(7))
+        nll, w = marginal_state_nll(li, lt, em, torch.ones(7, dtype=torch.bool), allowed, torch.ones(7))
         post, _ = forward_backward(li, lt, em)
         self.assertAlmostEqual(float(nll), float(-torch.log(post[:, 2]).sum()), places=4)
         self.assertEqual(w, 7.0)

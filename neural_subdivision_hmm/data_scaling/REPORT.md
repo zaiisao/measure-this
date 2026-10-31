@@ -1,6 +1,6 @@
 # NHMM training-data scaling and composition study
 
-Isolated in `neural_subdivision_hmm/data_scaling/`. The NHMM architecture, five states, fixed lattices, normalized Gaussian emission, exact HMM inference, λ = 10 objective, mel50 input, split, evaluator and every earlier checkpoint/report are unchanged and reused. 141 training runs, 13.9 CPU-hours (2 threads per run).
+Isolated in `neural_subdivision_hmm/data_scaling/`. The NHMM architecture, five states, fixed lattices, normalized Gaussian emission, exact HMM inference, λ = 10 objective, mel50 input, split, evaluator and every earlier checkpoint/report are unchanged and reused. The original study contains 141 training runs (13.9 CPU-hours); two additional corrected D3 reruns are reported below.
 
 ## Answer
 
@@ -90,7 +90,7 @@ Exact work IDs and seeds are in [stage1_subsets.json](results/stage1_subsets.jso
 | C: tempo-stratified 30 | 5 | .691 | .747 | — | = random 30 |
 | D2: work-weighted objective | 3 | .664 | .665 | −.03, −.09, −.03 | worse; 1× recall collapses to .36 |
 | D3 control: per-beat marginal posterior state term, unweighted | 2 (+1 diverged) | .548 | .611 | −.17, −.17 | the marginal objective itself fails |
-| D3: class-balanced marginal state term | 3 | .426 | .443 | −.30, −.21, −.35 | worse still |
+| D3: class-balanced marginal state term (corrected implementation) | 2 completed | .484 | .535 | — | unstable; see below |
 | E1: confidence-weighted marginal term (low-conf 0.3) | 2 (+1 diverged) | .519 | .590 | −.24, −.16 | not separable from the D3 failure |
 | E2: drop 19 suspected misaligned works (note match <80 % or p95 >100 ms) | 3 | .679 | .733 | −.04, −.04, −.03 | worse: removing data hurts |
 | F2: original-30 checkpoint + 600 updates on 96 | 3 | .735 | .734 | −.005, +.05, +.02 | inconclusive |
@@ -99,6 +99,7 @@ Exact work IDs and seeds are in [stage1_subsets.json](results/stage1_subsets.jso
 - **Composition correlation.** Across 24 independently drawn 30-work subsets, no composition statistic has a reliable rank correlation with validation BAcc ([composition_vs_performance_n30.csv](results/composition_vs_performance_n30.csv)). Statistics tested: ternary share, 4× share, 6× share, high-confidence share, tempo, composers, intervals. Tempo is the largest at ρ = .34 [−.01, .62]. These analyses do not support a composition explanation; with n = 24 they cannot exclude a modest one.
 - **Work weighting (D2)** changes the objective (it is no longer the original weighted likelihood) and lowers validation BAcc on all three seeds. Long works are not harmful influences under the original weighting.
 - **Class-balanced and confidence-weighted supervision (D3, E1)** had to use per-beat posterior marginals, because the original sequence-level term −log p(C | O, B) cannot be weighted per label. The *unweighted* marginal control already fails (val .55), and 2 of 9 such runs diverged with non-positive-definite covariances. The weighting questions are therefore **unresolved**: the substitute objective, not the weights, dominates the result.
+- **D3 implementation correction.** The first class-balanced D3 implementation read string class-weight keys as integer lookups and silently applied no class weights; its published .426 / .443 row is invalid and is removed. The corrected rerun completed 1,200 updates for seeds 0 and 2. Their validation-selected step-40 checkpoints score validation BAcc .561 / .407 and test BAcc .614 / .455, respectively (means .484 / .535). These are only two seeds, and the third corrected seed has no completed training record. Both runs' validation balanced accuracy falls to .201 / .235 by step 1,200, while validation losses grow sharply. Evaluation of later checkpoints encounters non-finite posterior scores. The corrected result is therefore evidence of severe instability, not a reliable class-weight effect; it does not rescue D3.
 - **Annotation reliability (E2).** Excluding the 19 works with the poorest score/performance alignment, a training-only rule fixed before running, reduces validation BAcc on all three seeds. There is no evidence that the added works' weaker alignment drives the original decline. The difficult-work ranking and down-weighting interventions were not run, because the decline was already explained.
 - **Incremental addition (F).** The scratch growth curve is Stage 1's original-order B2 series (§2). Continuing from the 30-work checkpoint (F2) is not reliably better than scratch-96 on validation and is worse on test. There is no sign of catastrophic change when works are added.
 
@@ -134,19 +135,20 @@ Exact work IDs and seeds are in [stage1_subsets.json](results/stage1_subsets.jso
 - confidence-aware ambiguous-state constraints;
 - per-class learning-curve figures (the histories contain the recalls).
 
-Failed runs are recorded in `logs/stage2.log`: D3 control seed 2 and E1 seed 2 hit a Cholesky failure. Test per-work BAcc, confusions, NLL, ECE, Brier, transitions and predicted distributions are in each `runs/*/eval_*.json` and in [all_runs.csv](results/all_runs.csv).
+Failed runs are recorded in `logs/stage2.log` and `logs/stage2_d3_rerun.log`: D3 control seed 2 and E1 seed 2 hit a Cholesky failure; corrected D3 later checkpoints also produce non-finite posterior scores. Test per-work BAcc, confusions, NLL, ECE, Brier, transitions and predicted distributions are in each `runs/*/eval_*.json` and in [all_runs.csv](results/all_runs.csv). Corrected D3 validation-selected metrics are in `runs/S2_D3fix_class_marginal_s{0,2}/eval_val_bacc.json`.
 
 ## Reproduction
 
 ```sh
-cd neural_subdivision_hmm/data_scaling
-PY=python   # numpy, scipy, torch, pandas, matplotlib
-$PY -m unittest discover -s tests          # 10 tests
-$PY audit.py
-$PY runner.py jobs/repro.jsonl --workers 2
-$PY runner.py jobs/stage1.jsonl --workers 30
-$PY runner.py jobs/stage2.jsonl --workers 32
-$PY analyze.py
+pip install -e .            # from the repository root
+python -m unittest discover -s neural_subdivision_hmm/data_scaling/tests -t .
+python -m neural_subdivision_hmm.data_scaling.audit
+D=neural_subdivision_hmm/data_scaling/jobs
+python -m neural_subdivision_hmm.data_scaling.runner $D/repro.jsonl --workers 2
+python -m neural_subdivision_hmm.data_scaling.runner $D/stage1.jsonl --workers 30
+python -m neural_subdivision_hmm.data_scaling.runner $D/stage2.jsonl --workers 32
+python -m neural_subdivision_hmm.data_scaling.runner $D/stage2_d3_rerun.jsonl --workers 3
+python -m neural_subdivision_hmm.data_scaling.analyze
 ```
 
 The job files are the exact specifications: work IDs, seeds, budgets and weightings. Re-running skips finished jobs.

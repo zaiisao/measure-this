@@ -30,13 +30,12 @@ This is neither the perceptual tatum nor the performed onset density; see the re
 import ast
 import bisect
 import json
-import sys
 from collections import defaultdict
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from config import ASAP  # noqa: E402
-from midi_io import read_midi  # noqa: E402
+import mido
+
+from subdivision_hmm.config import ASAP
 
 FULL_RATIOS = (1, 2, 3, 4, 6, 8, 12, 16, 24)
 TOL = 0.015  # beat-phase tolerance in score time (same as the earlier reference builder)
@@ -61,6 +60,16 @@ def diagnostic(x, r):
     return not any(fits(x, d) for d in FULL_RATIOS if d < r and r % d == 0)
 
 
+def note_onset_times(path):
+    """Sorted note-on times (s) of a MIDI file, all tracks, tempo map applied."""
+    t, out = 0.0, []
+    for msg in mido.MidiFile(path):
+        t += msg.time
+        if msg.type == "note_on" and msg.velocity > 0:
+            out.append(t)
+    return sorted(out)
+
+
 def _parse(v):
     return ast.literal_eval(v) if isinstance(v, str) else v
 
@@ -75,8 +84,7 @@ def performance_intervals(perf_id, ann, quality_ok):
     pt = {round(float(k), 6): v for k, v in _parse(ann["performance_beats_type"]).items()}
     downs = sorted(map(float, _parse(ann["midi_score_downbeats"])))
     ts = sorted((float(k), v[0]) for k, v in _parse(ann["midi_score_time_signatures"]).items())
-    notes = read_midi(ASAP / Path(perf_id).parent / "midi_score.mid").notes
-    times = [n.time for n in notes]
+    times = note_onset_times(ASAP / Path(perf_id).parent / "midi_score.mid")
     rows = []
     for i in range(len(sb) - 1):
         s0, s1, p0, p1 = sb[i], sb[i + 1], pb[i], pb[i + 1]

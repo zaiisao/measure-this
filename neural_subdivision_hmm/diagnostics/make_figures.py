@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Generate compact SVG diagnostic figures without matplotlib."""
-import json
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -51,7 +50,6 @@ def reliability():
 def sweep():
     lam=np.array([0,1,2,5,10],dtype=float)
     bacc=np.array([.440699,.466777,.576956,.590863,.649254])
-    testnll=np.array([88.74,96.34,100.68,105.73,120.20])
     state_info=np.array([27.467,8.008,2.698,.879,.716])
     body=[text(600,27,'Supervision weight separates acoustic fit from state alignment',19)];x0,y0,w,h=80,55,780,400
     # left axis BAcc, right axis state NLL/label (drawn as normalized 0..1 scale).

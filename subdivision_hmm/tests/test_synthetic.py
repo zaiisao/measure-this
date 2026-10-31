@@ -1,14 +1,16 @@
 import itertools
-import sys
 import unittest
-from pathlib import Path
 
 import numpy as np
+import torch
 from scipy.special import logsumexp
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from hmm import forward_backward, persistence_transitions, viterbi  # noqa: E402
-from observation import GaussianTemplate, NaiveSum, PoissonOccupancy  # noqa: E402
+from subdivision_hmm.hmm import forward_backward, persistence_log_transition, viterbi
+from subdivision_hmm.observation import GaussianTemplate, NaiveSum, PoissonOccupancy, subdivision_templates
+
+
+def persistence_transitions(k, p_stay):
+    return persistence_log_transition(k, p_stay, dtype=torch.float64).numpy()
 
 R = [1, 2, 3, 4, 6]
 
@@ -133,8 +135,7 @@ class TestIdentifiability(unittest.TestCase):
 class TestEnvelopeModels(unittest.TestCase):
     def envelopes(self, r, n=40, noise=0.3, seed=0):
         rng = np.random.default_rng(seed)
-        phase = np.linspace(0.06, 0.94, 48)
-        h = np.exp(-0.5 * ((phase[:, None] - np.arange(1, r)[None, :] / r) / 0.03) ** 2).sum(1)
+        h = subdivision_templates([r])[0]
         return 3 * h[None, :] + noise * rng.normal(size=(n, 48))
 
     def test_gaussian_template_recovers_level(self):

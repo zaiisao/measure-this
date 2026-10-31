@@ -4,16 +4,13 @@ results/audit_*.csv and results/audit.md."""
 import csv
 import hashlib
 import json
-import sys
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parents[1]
-ROOT = HERE.parent
-sys.path.insert(0, str(HERE))
-from labels import performance_intervals, load_annotations  # noqa: E402
+from subdivision_hmm.config import INVENTORY as INV
+from subdivision_hmm.labels import load_annotations, performance_intervals
 
-from config import INVENTORY as INV  # noqa: E402
+HERE = Path(__file__).resolve().parents[1]
 OUT = HERE / "results"
 
 

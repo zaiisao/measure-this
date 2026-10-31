@@ -1,14 +1,9 @@
-import math
-import sys
 import unittest
-from pathlib import Path
 
 import torch
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-sys.path.insert(0, str(Path(__file__).resolve().parents[3] / 'subdivision_hmm'))
-from structured_emission import StructuredNeuralGaussian
-from observation import GaussianTemplate
+from neural_subdivision_hmm.diagnostics.structured_emission import StructuredNeuralGaussian
+from subdivision_hmm.observation import GaussianTemplate
 
 
 class StructuredGaussianTests(unittest.TestCase):
