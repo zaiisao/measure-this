@@ -38,6 +38,26 @@ The pretrained checkpoint's manifest reports ASAP in its supervised training cor
 
 This note summarizes the comparison only. It does not include audio, feature caches, model checkpoints, or the exploratory experiment directories.
 
+## Beat This time-signature pipeline
+
+The project-owned AlignBeat training code is linked at the repository root as `AlignBeat/`. Dataset repositories are submodules under `third_party/` for Beat This annotations, ASAP, Harmonix, and FiloSax. The FiloSax repository provides its source documentation and example materials; access to the full dataset is separate. Initialize the submodules after cloning:
+
+```sh
+git submodule update --init --recursive
+```
+
+Groove MIDI publishes its official data as an archive rather than a Git repository. Download the archive from the [official dataset page](https://magenta.withgoogle.com/datasets/groove), extract its `groove/` directory under `third_party/`, and rename it to `third_party/groove_midi/`. That folder contains `info.csv` and the referenced MIDI files, and is ignored by Git.
+
+Run the single pipeline across all Beat This datasets:
+
+```sh
+python scripts/meter_pipeline.py
+```
+
+The pipeline copies the Beat This annotation tree to `measure_this_annotations/`. In each matched beat file, it adds the written time signature as a third column on the first beat and on each downbeat where the signature changes. ASAP changes are placed at their timestamped downbeats; Groove MIDI, Harmonix, and FiloSax provide the opening signature. The source Beat This submodule is left unchanged. Summary and review CSVs are written under `results/meter_pipeline/`; `--out` changes that report directory.
+
+Datasets without a direct time-signature source are listed as unresolved until score discovery and score-to-performance alignment are implemented. A song-level signature is kept as candidate evidence and does not produce timestamped change events.
+
 ## Beat-conditioned subdivision HMM
 
 [`subdivision_hmm/`](subdivision_hmm/) is a standalone experiment: given ground-truth beats, infer each beat's notated subdivision ratio (1/2/3/4/6) from onset evidence with fixed beat-relative lattices, normalized onset likelihoods and an exact HMM persistence prior, on a work-disjoint ASAP split. With ideal (performance-MIDI) onsets it reaches 0.861 test balanced accuracy (0.944 on high-confidence labels); from audio-derived onsets the best is 0.615, so the acoustic evidence is the bottleneck. See [the report](subdivision_hmm/REPORT.md).
