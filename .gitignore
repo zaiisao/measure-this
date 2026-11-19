@@ -1,6 +1,5 @@
 __pycache__/
 results/
-measure_this_annotations/
 third_party/groove_midi/
 *.egg-info/
 *.pt
